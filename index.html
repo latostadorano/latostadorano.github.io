@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pablo Islas — Senior Multimedia Designer</title>
+<meta name="description" content="Senior Multimedia Designer based in Guadalajara. Visual systems, digital campaigns, creative tech & data.">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0e0e0e; --bg2: #161616; --bg3: #1e1e1e;
+  --text: #f0ede8; --muted: #888580; --accent: #d4a853;
+  --accent2: #5b8fa8; --border: rgba(255,255,255,0.08);
+  --font: 'Inter','Helvetica Neue',sans-serif;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--font); }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 0.5px solid var(--border); position: sticky; top: 0; background: rgba(14,14,14,0.95); backdrop-filter: blur(8px); z-index: 100; }
+.nav-logo { font-size: 15px; font-weight: 500; letter-spacing: 0.02em; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.lang-toggle { display: flex; border: 0.5px solid var(--border); overflow: hidden; }
+.lang-btn { font-size: 11px; padding: 6px 12px; background: transparent; border: none; color: var(--muted); cursor: pointer; letter-spacing: 0.06em; transition: all 0.2s; }
+.lang-btn.active { background: var(--accent); color: var(--bg); }
+.nav-cta { font-size: 11px; border: 0.5px solid var(--accent); color: var(--accent); padding: 8px 16px; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; background: transparent; transition: all 0.2s; }
+.nav-cta:hover { background: var(--accent); color: var(--bg); }
+.hero { padding: 90px 40px 70px; border-bottom: 0.5px solid var(--border); display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+.hero-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.hero-tag::before { content:''; display:block; width:24px; height:0.5px; background:var(--accent); }
+.hero-title { font-size: clamp(36px,5vw,60px); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 12px; }
+.hero-subtitle { font-size: 13px; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; }
+.hero-sub { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 440px; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 16px; align-items: center; }
+.btn-primary { background: var(--accent); color: var(--bg); font-size: 11px; padding: 12px 24px; border: none; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; transition: opacity 0.2s; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; background: transparent; border: 0.5px solid var(--border); padding: 12px 20px; transition: all 0.2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+.hero-right { display: flex; flex-direction: column; gap: 0; }
+.hero-profile { width: 100%; aspect-ratio: 3/2; background: var(--bg3); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 1px; overflow: hidden; }
+.profile-placeholder { text-align: center; }
+.profile-initials { width: 64px; height: 64px; border-radius: 50%; background: var(--bg2); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; color: var(--accent); margin: 0 auto 12px; }
+.profile-note { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+.hero-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+.hero-stat { background: var(--bg2); padding: 16px; }
+.stat-num { font-size: 22px; font-weight: 400; color: var(--text); letter-spacing: -0.02em; }
+.stat-num span { color: var(--accent); }
+.stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+.section { padding: 60px 40px; border-top: 0.5px solid var(--border); }
+.section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.section-label::before { content:''; display:block; width:20px; height:0.5px; background:var(--accent); }
+.section-heading { font-size: 20px; font-weight: 400; color: var(--text); letter-spacing: -0.01em; }
+.section-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 36px; gap: 20px; }
+.filters { display: flex; gap: 4px; flex-wrap: wrap; padding-top: 20px; }
+.filter-btn { font-size: 10px; padding: 6px 14px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.2s; }
+.filter-btn.active { border-color: var(--accent); color: var(--accent); }
+.filter-btn:hover:not(.active) { border-color: rgba(255,255,255,0.2); color: var(--text); }
+.featured-row { display: grid; grid-template-columns: 2fr 1fr; gap: 1px; background: var(--border); margin-bottom: 1px; }
+.featured-card { background: var(--bg); overflow: hidden; cursor: pointer; transition: background 0.2s; }
+.featured-card:hover { background: var(--bg3); }
+.featured-card.hidden { display: none; }
+.featured-thumb { width: 100%; overflow: hidden; background: var(--bg2); }
+.featured-thumb img { width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:16/7; filter:saturate(0.8); transition: all 0.4s; }
+.featured-card:hover .featured-thumb img { transform:scale(1.03); filter:saturate(1); }
+.side-thumb .featured-thumb img { aspect-ratio: 4/3; }
+.featured-info { padding: 20px 24px; border-top: 0.5px solid var(--border); }
+.featured-badge { display: inline-block; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--accent); color: var(--bg); padding: 3px 8px; margin-bottom: 10px; }
+.featured-title { font-size: 16px; font-weight: 400; color: var(--text); margin-bottom: 6px; }
+.featured-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.projects-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1px; background: var(--border); }
+.project-card { background: var(--bg); overflow: hidden; cursor: pointer; transition: background 0.2s; }
+.project-card:hover { background: var(--bg3); }
+.project-card.hidden { display: none; }
+.project-thumb { width:100%; aspect-ratio:4/3; overflow:hidden; background:var(--bg2); }
+.project-thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.8); transition: all 0.4s; }
+.project-card:hover .project-thumb img { transform:scale(1.04); filter:saturate(1); }
+.project-info { padding: 18px; border-top: 0.5px solid var(--border); }
+.project-cat { font-size: 10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:6px; }
+.project-title { font-size: 13px; font-weight:500; color:var(--text); margin-bottom:6px; }
+.project-desc { font-size: 12px; color:var(--muted); line-height:1.6; }
+.data-featured { display: grid; grid-template-columns: 1fr 1.4fr; gap: 1px; background: var(--border); }
+.data-info { background: var(--bg2); padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+.data-badge { display: inline-block; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--accent2); color: white; padding: 3px 8px; margin-bottom: 16px; width: fit-content; }
+.data-title { font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 12px; letter-spacing: -0.01em; line-height: 1.2; }
+.data-desc { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+.data-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.data-tag { font-size: 10px; color: var(--accent2); border: 0.5px solid rgba(91,143,168,0.3); padding: 4px 10px; }
+.data-link { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; border-bottom: 0.5px solid var(--accent); padding-bottom: 2px; width: fit-content; }
+.data-img { background: var(--bg3); overflow: hidden; }
+.data-img img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.7) brightness(0.85); min-height: 280px; }
+.exp-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1px; background: var(--border); }
+.exp-card { background: var(--bg2); overflow: hidden; cursor: pointer; transition: background 0.2s; display: flex; flex-direction: column; }
+.exp-card:hover { background: var(--bg3); }
+.exp-thumb { width:100%; aspect-ratio:4/3; overflow:hidden; background:var(--bg3); }
+.exp-thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.6) brightness(0.75); transition: all 0.4s; }
+.exp-card:hover .exp-thumb img { filter:saturate(0.9) brightness(0.9); transform:scale(1.04); }
+.exp-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.exp-title { font-size: 13px; font-weight:500; color:var(--text); margin-bottom:8px; }
+.exp-desc { font-size: 12px; color:var(--muted); line-height:1.6; flex: 1; }
+.exp-link { font-size: 10px; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-top:12px; display:block; }
+.about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: start; }
+.about-intro { font-size: 14px; color:var(--muted); line-height:1.85; margin-bottom:16px; }
+.about-highlight { border-left: 2px solid var(--accent); padding-left: 16px; font-size: 13px; color:var(--text); line-height:1.7; margin: 24px 0; }
+@keyframes borderCycle {
+  0%   { border-color: rgba(114,9,183,0.5); }
+  20%  { border-color: rgba(247,37,133,0.5); }
+  40%  { border-color: rgba(76,201,240,0.5); }
+  60%  { border-color: rgba(255,214,10,0.5); }
+  80%  { border-color: rgba(46,196,182,0.5); }
+  100% { border-color: rgba(114,9,183,0.5); }
+}
+@keyframes dotCycle {
+  0%   { background: #7209b7; }
+  20%  { background: #f72585; }
+  40%  { background: #4cc9f0; }
+  60%  { background: #ffd60a; }
+  80%  { background: #2ec4b6; }
+  100% { background: #7209b7; }
+}
+.available-badge { display: inline-flex; align-items: center; gap: 8px; border: 0.5px solid rgba(114,9,183,0.5); padding: 10px 20px; margin-top: 20px; animation: borderCycle 5s linear infinite; }
+.available-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; animation: dotCycle 5s linear infinite; }
+.available-text { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+.skill-block { background: var(--bg); padding: 20px; }
+.skill-block-title { font-size: 10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:12px; }
+.skill-block-title.data { color: var(--accent2); }
+.skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.skill-tag { font-size: 11px; color:var(--muted); border: 0.5px solid var(--border); padding: 4px 10px; }
+.skill-tag.highlight { border-color: rgba(91,143,168,0.35); color: var(--accent2); }
+.exp-bar-label { display:flex; justify-content:space-between; margin-bottom:6px; }
+.exp-bar-name { font-size: 12px; color:var(--muted); }
+.exp-bar-yrs { font-size: 11px; color:var(--accent); }
+.exp-bar-track { height:2px; background:var(--border); margin-bottom:12px; }
+.exp-bar-fill { height:2px; background:var(--accent); opacity:0.6; }
+.exp-bar-fill.data { background: var(--accent2); }
+.contact-band { padding: 80px 40px; border-top: 0.5px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.contact-heading { font-size: clamp(28px,4vw,44px); font-weight:400; letter-spacing:-0.02em; line-height:1.1; margin-bottom:16px; }
+.contact-heading em { font-style:normal; color:var(--accent); }
+.contact-sub { font-size:14px; color:var(--muted); line-height:1.7; }
+.contact-links { display:flex; flex-direction:column; }
+.contact-link { display:flex; justify-content:space-between; align-items:center; padding: 18px 0; border-bottom: 0.5px solid var(--border); color:var(--muted); text-decoration:none; transition: color 0.2s; }
+.contact-link:hover { color:var(--accent); }
+.contact-link-label { font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+.contact-link-val { font-size:13px; }
+.contact-link-arrow { font-size:16px; }
+footer { padding: 20px 40px; border-top: 0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.footer-text { font-size:11px; color:var(--muted); letter-spacing:0.04em; }
+@media(max-width:700px){
+  nav { padding:16px 20px; } .nav-links { display:none; }
+  .hero { padding:50px 20px 40px; grid-template-columns:1fr; } .hero-right { order:-1; }
+  .section { padding:40px 20px; } .section-header { flex-direction:column; }
+  .featured-row { grid-template-columns:1fr; } .projects-grid { grid-template-columns:1fr 1fr; }
+  .data-featured { grid-template-columns:1fr; } .exp-grid { grid-template-columns:1fr 1fr; }
+  .about-grid { grid-template-columns:1fr; } .skills-grid { grid-template-columns:1fr; }
+  .contact-band { padding:60px 20px; grid-template-columns:1fr; }
+  footer { padding:16px 20px; flex-direction:column; gap:6px; text-align:center; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Pablo Islas <span>·</span></div>
+  <div class="nav-links">
+    <a onclick="goTo('work')">Work</a>
+    <a onclick="goTo('data')">Data</a>
+    <a onclick="goTo('about')">About</a>
+    <a onclick="goTo('contact')">Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
+    <button class="nav-cta" onclick="goTo('contact')" id="cta-nav">Hire me</button>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag" id="hero-tag">Guadalajara, Mexico · Open to opportunities</div>
+    <h1 class="hero-title" id="hero-title">Senior<br>Multimedia<br>Designer</h1>
+    <div class="hero-subtitle" id="hero-subtitle">Visual Systems · Digital Campaigns · Creative Tech</div>
+    <p class="hero-sub" id="hero-sub">10+ years designing across agencies, in-house teams, and broadcast media. I build consistent visual systems, lead digital campaigns, and bring a technical edge — from motion graphics to AI-assisted production.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="goTo('work')" id="btn-work">View work</button>
+      <button class="btn-ghost" onclick="goTo('contact')" id="btn-contact">Get in touch</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-profile">
+      <div class="profile-placeholder">
+        <div class="profile-initials">PI</div>
+        <div class="profile-note" id="photo-note">Photo coming soon</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="stat-num">10<span>+</span></div><div class="stat-label" id="stat1">Years exp.</div></div>
+      <div class="hero-stat"><div class="stat-num">3</div><div class="stat-label" id="stat2">Industries</div></div>
+      <div class="hero-stat"><div class="stat-num">C1</div><div class="stat-label" id="stat3">English</div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="work">
+  <div class="section-header">
+    <div>
+      <div class="section-label" id="work-label">Selected work</div>
+      <div class="section-heading" id="work-heading">Branding, campaigns & digital systems</div>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="branding">Branding</button>
+      <button class="filter-btn" data-cat="campaigns">Campaigns</button>
+      <button class="filter-btn" data-cat="creative-tech">Creative Tech</button>
+    </div>
+  </div>
+  <div class="featured-row" id="featured-row">
+    <div class="featured-card" data-cat="branding" onclick="openLink('https://www.behance.net/gallery/236279643/SJRT-JaliscoTV-JaliscoRADIO-JaliscoNOTICIAS')">
+      <div class="featured-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/454ab2236279643.Y3JvcCwxMDgwLDg0NCwwLDUwMg.png" alt="SJRT"></div>
+      <div class="featured-info"><span class="featured-badge" id="badge-featured">Featured</span><div class="featured-title">SJRT — Jalisco TV · Radio · Noticias</div><div class="featured-desc" id="sjrt-desc">Visual identity and scalable content systems for Jalisco's public media group — unified across TV, radio, and digital platforms.</div></div>
+    </div>
+    <div class="featured-card side-thumb" data-cat="campaigns" onclick="openLink('https://www.behance.net/gallery/241903029/Multichannel-Campaign-Design')">
+      <div class="featured-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/bd640f241903029.Y3JvcCw4OTQsNzAwLDM5NCww.png" alt="Multichannel"></div>
+      <div class="featured-info"><span class="featured-badge" id="badge-campaign">Campaign</span><div class="featured-title" id="multi-title">Multichannel Campaign Design</div><div class="featured-desc" id="multi-desc">Integrated creative for digital campaigns across social, email, and display.</div></div>
+    </div>
+  </div>
+  <div class="projects-grid" id="projects-grid">
+    <div class="project-card" data-cat="campaigns" onclick="openLink('https://www.behance.net/gallery/213413477/Movimiento-Ciudadano')">
+      <div class="project-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/3fcc1f213413477.Y3JvcCwxMjQ2LDk3NCwxNTEsNDIy.png" alt="MC"></div>
+      <div class="project-info"><div class="project-cat">Campaigns</div><div class="project-title">Movimiento Ciudadano</div><div class="project-desc" id="mc-desc">Political campaign visual system — social media, digital ads, and broadcast assets.</div></div>
+    </div>
+    <div class="project-card" data-cat="campaigns" onclick="openLink('https://www.behance.net/gallery/216736369/Social-media-posts-for-Crown-Paradise-Hotels')">
+      <div class="project-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/1e4837216736369.Y3JvcCw4MDgsNjMyLDAsMA.jpg" alt="Crown Paradise"></div>
+      <div class="project-info"><div class="project-cat">Campaigns</div><div class="project-title">Crown Paradise Hotels</div><div class="project-desc" id="crown-desc">Branded social media content and promotional graphics for hospitality client.</div></div>
+    </div>
+    <div class="project-card" data-cat="campaigns" onclick="openLink('https://www.behance.net/gallery/212081601/Branded-Social-Media-Graphics-for-Hotels')">
+      <div class="project-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/b07954212081601.Y3JvcCw2ODUsNTM2LDAsODQ.jpg" alt="Hotels"></div>
+      <div class="project-info"><div class="project-cat">Campaigns</div><div class="project-title" id="hotels-title">Branded Social Media Graphics</div><div class="project-desc" id="hotels-desc">Consistent social content system for hotel brand across multiple properties.</div></div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openLink('https://www.behance.net/gallery/207709113/La-Chica-del-Beis')">
+      <div class="project-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/f04d1a207709113.Y3JvcCwxMDI0LDgwMCwwLDA.png" alt="La Chica del Beis"></div>
+      <div class="project-info"><div class="project-cat">Branding</div><div class="project-title">La Chica del Beis</div><div class="project-desc" id="beis-desc">Brand identity, logo, social media templates, and editable content system for content creator.</div></div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openLink('https://www.behance.net/gallery/213530875/OvvO-websites')">
+      <div class="project-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/b57b19213530875.Y3JvcCw2NjIsNTE4LDI3MywxOQ.png" alt="OvvO"></div>
+      <div class="project-info"><div class="project-cat">Branding</div><div class="project-title">OvvO</div><div class="project-desc" id="ovvo-desc">Website design and brand identity for multiplatform project.</div></div>
+    </div>
+    <div class="project-card" data-cat="creative-tech" onclick="openLink('https://www.behance.net/gallery/235249179/Generative-Forecasts')">
+      <div class="project-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/aaef08235249179.Y3JvcCwxMzYwLDEwNjMsMCw1MA.jpeg" alt="Generative Forecasts"></div>
+      <div class="project-info"><div class="project-cat">Creative Tech</div><div class="project-title">Generative Forecasts</div><div class="project-desc" id="gf-desc">Weather API + p5.js + Node.js → auto-generated social media visuals in real time.</div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="data">
+  <div class="section-header">
+    <div>
+      <div class="section-label" id="data-label">Data & Analysis</div>
+      <div class="section-heading" id="data-heading">Where design meets data</div>
+    </div>
+  </div>
+  <div class="data-featured">
+    <div class="data-info">
+      <span class="data-badge" id="data-badge">Data Project</span>
+      <div class="data-title" id="mibici-title">MiBici Wrapped</div>
+      <div class="data-desc" id="mibici-desc">A comprehensive data analysis of 10 years of Guadalajara's public bike-sharing system. Inspired by Spotify Wrapped — surfacing usage patterns, peak hours, top routes, and how the city moves on two wheels.</div>
+      <div class="data-tags"><span class="data-tag">Python</span><span class="data-tag">Pandas</span><span class="data-tag">Data cleaning</span><span class="data-tag">Data viz</span><span class="data-tag">APIs</span><span class="data-tag">GitHub</span></div>
+      <a class="data-link" href="https://github.com/latostadorano" target="_blank" id="github-link">View on GitHub ↗</a>
+    </div>
+    <div class="data-img"><img src="https://miro.medium.com/v2/resize:fit:1400/1*XMqaFKNMvY2UZFfHV_JUKA.png" alt="MiBici" onerror="this.src='https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&q=80'"></div>
+  </div>
+</section>
+<section class="section" id="experiments">
+  <div class="section-header">
+    <div>
+      <div class="section-label" id="exp-label">Beyond the brief</div>
+      <div class="section-heading" id="exp-heading">Experimental work & personal projects</div>
+    </div>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card" onclick="openLink('https://www.behance.net/gallery/207706375/Music-video-for-Katfish')">
+      <div class="exp-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/56ad98207706375.Y3JvcCwxMTIzLDg3OCwxNDEsOTc.png" alt="Katfish" onerror="this.src='https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&q=80'"></div>
+      <div class="exp-body"><div class="exp-title">Music Video — Katfish</div><div class="exp-desc" id="katfish-desc">AI-generated music video using Runway and MidJourney for electronic group Katfish.</div><span class="exp-link">View on Behance ↗</span></div>
+    </div>
+    <div class="exp-card" onclick="openLink('https://www.behance.net/gallery/207702169/OvvOs')">
+      <div class="exp-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/acd3d1207702169.Y3JvcCw5MjgsNzI1LDAsMTU2.png" alt="OvvOs" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80'"></div>
+      <div class="exp-body"><div class="exp-title">OvvOs</div><div class="exp-desc" id="ovvos-desc">Generative character design and NFT exploration. Building visual systems from rules, not manual decisions.</div><span class="exp-link">View on Behance ↗</span></div>
+    </div>
+    <div class="exp-card" onclick="openLink('https://www.behance.net/gallery/207707655/Bike-Punks-flyers')">
+      <div class="exp-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/60e783207707655.Y3JvcCwxMDgwLDg0NCwwLDY0.png" alt="Bike Punks" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'"></div>
+      <div class="exp-body"><div class="exp-title">Bike Punks Flyers</div><div class="exp-desc" id="bikepunks-desc">Expressive editorial design for underground cycling culture. Raw, intentional, off-grid.</div><span class="exp-link">View on Behance ↗</span></div>
+    </div>
+    <div class="exp-card" onclick="openLink('https://www.behance.net/gallery/207709821/Character-design-with-AI')">
+      <div class="exp-thumb"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/4639c8207709821.Y3JvcCw4NTMsNjY3LDAsMjM4.jpg" alt="AI Characters" onerror="this.src='https://images.unsplash.com/photo-1655720845083-8f5c30f3f745?w=600&q=80'"></div>
+      <div class="exp-body"><div class="exp-title">Character Design with AI</div><div class="exp-desc" id="chardesign-desc">Exploring AI image generation for character creation — prompt-based visual direction and aesthetic experimentation.</div><span class="exp-link">View on Behance ↗</span></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label" id="about-label">About</div>
+      <p class="about-intro" id="about-p1">I'm a Senior Multimedia Designer based in Guadalajara with 10+ years of experience across digital agencies, in-house teams, and broadcast media. I've designed brands, led campaigns, built content systems, and directed creative teams.</p>
+      <p class="about-intro" id="about-p2">My work sits at the intersection of design craft and technical thinking. I'm comfortable in Adobe CC and equally comfortable writing Python to clean and analyze data or automate production tasks.</p>
+      <div class="about-highlight" id="about-highlight">What makes me useful in a team: I think in systems. I don't just design a post — I design the template, the logic, and the workflow behind it.</div>
+      <p class="about-intro" id="about-p3">Currently at SJRT (Jalisco TV, Radio & Noticias). Actively looking for in-house senior design roles at companies with a serious creative culture.</p>
+      <div class="available-badge"><div class="available-dot"></div><div class="available-text" id="avail-text">Available for new opportunities</div></div>
+    </div>
+    <div>
+      <div class="skills-grid">
+        <div class="skill-block"><div class="skill-block-title" id="sk1">Design</div><div class="skill-tags"><span class="skill-tag">Illustrator</span><span class="skill-tag">Photoshop</span><span class="skill-tag">InDesign</span><span class="skill-tag">Figma</span><span class="skill-tag">Canva</span><span class="skill-tag">After Effects</span><span class="skill-tag">Premiere Pro</span><span class="skill-tag">Final Cut</span></div></div>
+        <div class="skill-block"><div class="skill-block-title" id="sk2">Creative Tech</div><div class="skill-tags"><span class="skill-tag">p5.js</span><span class="skill-tag">Node.js</span><span class="skill-tag">TouchDesigner</span><span class="skill-tag">MidJourney</span><span class="skill-tag">Runway</span><span class="skill-tag">Stable Diffusion</span><span class="skill-tag">Adobe Firefly</span><span class="skill-tag">Automation</span></div></div>
+        <div class="skill-block"><div class="skill-block-title data" id="sk3">Data & Code</div><div class="skill-tags"><span class="skill-tag highlight">Python</span><span class="skill-tag highlight">Pandas</span><span class="skill-tag highlight">Data analysis</span><span class="skill-tag highlight">Data cleaning</span><span class="skill-tag highlight">APIs</span><span class="skill-tag highlight">Git & GitHub</span><span class="skill-tag">TripleTen certified</span><span class="skill-tag">HarvardX CS50</span></div></div>
+        <div class="skill-block"><div class="skill-block-title" id="sk4">Marketing</div><div class="skill-tags"><span class="skill-tag">Branding systems</span><span class="skill-tag">Social media</span><span class="skill-tag">Email marketing</span><span class="skill-tag">Google Ads</span><span class="skill-tag">Digital campaigns</span><span class="skill-tag">HubSpot</span></div></div>
+      </div>
+      <div style="margin-top:20px;">
+        <div id="exp-bars-title" style="font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:16px;">Experience by area</div>
+        <div id="bars"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="contact-band" id="contact">
+  <div>
+    <h2 class="contact-heading" id="contact-heading">Looking for a designer<br>who <em>gets it done.</em></h2>
+    <p class="contact-sub" id="contact-sub">Senior Multimedia Designer available for in-house roles in Guadalajara or remotely. Experienced in branding, digital campaigns, broadcast design, and production workflows.</p>
+  </div>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:pablotoust@gmail.com"><span class="contact-link-label">Email</span><span class="contact-link-val">pablotoust@gmail.com</span><span class="contact-link-arrow">↗</span></a>
+    <a class="contact-link" href="https://linkedin.com/in/pabloislas" target="_blank"><span class="contact-link-label">LinkedIn</span><span class="contact-link-val">linkedin.com/in/pabloislas</span><span class="contact-link-arrow">↗</span></a>
+    <a class="contact-link" href="https://www.behance.net/latostadorano" target="_blank"><span class="contact-link-label">Behance</span><span class="contact-link-val">behance.net/latostadorano</span><span class="contact-link-arrow">↗</span></a>
+    <a class="contact-link" href="https://github.com/latostadorano" target="_blank"><span class="contact-link-label">GitHub</span><span class="contact-link-val">github.com/latostadorano</span><span class="contact-link-arrow">↗</span></a>
+  </div>
+</section>
+<footer>
+  <div class="footer-text">Pablo Islas © 2025 — Guadalajara, MX</div>
+  <div class="footer-text" id="footer-right">Senior Multimedia Designer</div>
+</footer>
+<script>
+function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+function openLink(url){window.open(url,'_blank');}
+const barsData=[{label:'Digital Campaigns & Social',pct:95,data:false},{label:'Branding & Visual Systems',pct:90,data:false},{label:'Motion & Video',pct:65,data:false},{label:'Creative Tech & Code',pct:60,data:false},{label:'Data Analysis & Python',pct:40,data:true}];
+const barsEl=document.getElementById('bars');
+barsData.forEach(b=>{barsEl.innerHTML+=`<div class="exp-bar-label"><span class="exp-bar-name">${b.label}</span><span class="exp-bar-yrs">${b.pct}%</span></div><div class="exp-bar-track"><div class="exp-bar-fill${b.data?' data':''}" style="width:${b.pct}%"></div></div>`;});
+const filters=document.querySelectorAll('.filter-btn');
+const cards=document.querySelectorAll('.project-card');
+const featuredCards=document.querySelectorAll('.featured-card');
+const featuredRow=document.getElementById('featured-row');
+filters.forEach(btn=>{btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const cat=btn.dataset.cat;cards.forEach(c=>c.classList.toggle('hidden',cat!=='all'&&c.dataset.cat!==cat));let any=false;featuredCards.forEach(c=>{const show=cat==='all'||c.dataset.cat===cat;c.style.display=show?'':'none';if(show)any=true;});featuredRow.style.display=any?'':'none';});});
+const copy={en:{cta:'Hire me',tag:'Guadalajara, Mexico · Open to opportunities',title:'Senior<br>Multimedia<br>Designer',subtitle:'Visual Systems · Digital Campaigns · Creative Tech',sub:'10+ years designing across agencies, in-house teams, and broadcast media. I build consistent visual systems, lead digital campaigns, and bring a technical edge — from motion graphics to AI-assisted production.',btnWork:'View work',btnContact:'Get in touch',stat1:'Years exp.',stat2:'Industries',stat3:'English C1',workLabel:'Selected work',workHeading:'Branding, campaigns & digital systems',dataLabel:'Data & Analysis',dataHeading:'Where design meets data',dataBadge:'Data Project',mibiciTitle:'MiBici Wrapped',mibiciDesc:"A comprehensive data analysis of 10 years of Guadalajara's public bike-sharing system. Inspired by Spotify Wrapped — surfacing usage patterns, peak hours, top routes, and how the city moves on two wheels.",githubLink:'View on GitHub ↗',expLabel:'Beyond the brief',expHeading:'Experimental work & personal projects',katfishDesc:'AI-generated music video using Runway and MidJourney for electronic group Katfish.',ovvosDesc:'Generative character design and NFT exploration. Building visual systems from rules, not manual decisions.',bikepunksDesc:'Expressive editorial design for underground cycling culture. Raw, intentional, off-grid.',chardesignDesc:'Exploring AI image generation for character creation — prompt-based visual direction and aesthetic experimentation.',aboutLabel:'About',aboutP1:"I'm a Senior Multimedia Designer based in Guadalajara with 10+ years of experience across digital agencies, in-house teams, and broadcast media. I've designed brands, led campaigns, built content systems, and directed creative teams.",aboutP2:"My work sits at the intersection of design craft and technical thinking. I'm comfortable in Adobe CC and equally comfortable writing Python to clean and analyze data or automate production tasks.",aboutHighlight:"What makes me useful in a team: I think in systems. I don't just design a post — I design the template, the logic, and the workflow behind it.",aboutP3:'Currently at SJRT (Jalisco TV, Radio & Noticias). Actively looking for in-house senior design roles at companies with a serious creative culture.',availText:'Available for new opportunities',sk1:'Design',sk2:'Creative Tech',sk3:'Data & Code',sk4:'Marketing',expBarsTitle:'Experience by area',contactHeading:'Looking for a designer<br>who <em>gets it done.</em>',contactSub:'Senior Multimedia Designer available for in-house roles in Guadalajara or remotely. Experienced in branding, digital campaigns, broadcast design, and production workflows.',footerRight:'Senior Multimedia Designer',photoNote:'Photo coming soon',badgeFeatured:'Featured',badgeCampaign:'Campaign',multiTitle:'Multichannel Campaign Design',multiDesc:'Integrated creative for digital campaigns across social, email, and display.',sjrtDesc:"Visual identity and scalable content systems for Jalisco's public media group — unified across TV, radio, and digital platforms.",mcDesc:'Political campaign visual system — social media, digital ads, and broadcast assets.',crownDesc:'Branded social media content and promotional graphics for hospitality client.',hotelsTitle:'Branded Social Media Graphics',hotelsDesc:'Consistent social content system for hotel brand across multiple properties.',beisDesc:'Brand identity, logo, social media templates, and editable content system for content creator.',ovvoDesc:'Website design and brand identity for multiplatform project.',gfDesc:'Weather API + p5.js + Node.js → auto-generated social media visuals in real time.'},es:{cta:'Contrátame',tag:'Guadalajara, México · Abierto a oportunidades',title:'Diseñador<br>Multimedia<br>Senior',subtitle:'Sistemas visuales · Campañas digitales · Tecnología creativa',sub:'10+ años diseñando en agencias, equipos internos y medios de comunicación. Construyo sistemas visuales, dirijo campañas digitales y aporto un enfoque técnico — desde motion graphics hasta producción asistida por IA.',btnWork:'Ver trabajo',btnContact:'Contactar',stat1:'Años de exp.',stat2:'Industrias',stat3:'Inglés C1',workLabel:'Trabajo selecto',workHeading:'Branding, campañas y sistemas digitales',dataLabel:'Datos y análisis',dataHeading:'Donde el diseño se encuentra con los datos',dataBadge:'Proyecto de datos',mibiciTitle:'MiBici Wrapped',mibiciDesc:'Un análisis exhaustivo de 10 años del sistema público de bicicletas compartidas de Guadalajara. Inspirado en Spotify Wrapped — revelando patrones de uso, horas pico, rutas más populares y cómo se mueve la ciudad sobre dos ruedas.',githubLink:'Ver en GitHub ↗',expLabel:'Más allá del brief',expHeading:'Trabajo experimental y proyectos personales',katfishDesc:'Video musical generado con IA usando Runway y MidJourney para el grupo electrónico Katfish.',ovvosDesc:'Diseño generativo de personajes y exploración en NFTs. Construcción de sistemas visuales desde reglas, no desde decisiones manuales.',bikepunksDesc:'Diseño editorial expresivo para la cultura ciclista underground. Crudo, intencional, fuera de la cuadrícula.',chardesignDesc:'Exploración de generación de imágenes con IA para diseño de personajes — dirección visual basada en prompts y experimentación estética.',aboutLabel:'Sobre mí',aboutP1:'Soy Diseñador Multimedia Senior con base en Guadalajara y más de 10 años de experiencia en agencias digitales, equipos internos y medios de comunicación. He diseñado marcas, liderado campañas, construido sistemas de contenido y dirigido equipos creativos.',aboutP2:'Mi trabajo está en la intersección del oficio del diseño y el pensamiento técnico. Me muevo igual de cómodo en Adobe CC que escribiendo Python para limpiar y analizar datos o automatizar tareas de producción.',aboutHighlight:'Lo que me hace útil en un equipo: pienso en sistemas. No solo diseño un post — diseño la plantilla, la lógica y el flujo de trabajo detrás de él.',aboutP3:'Actualmente en SJRT (Jalisco TV, Radio y Noticias). Buscando activamente roles senior de diseño en empresas con una cultura creativa seria.',availText:'Disponible para nuevas oportunidades',sk1:'Diseño',sk2:'Tecnología creativa',sk3:'Datos y código',sk4:'Marketing',expBarsTitle:'Experiencia por área',contactHeading:'Buscas un diseñador<br>que <em>lo resuelve.</em>',contactSub:'Diseñador Multimedia Senior disponible para roles internos en Guadalajara o de forma remota. Experiencia en branding, campañas digitales, diseño para broadcast y flujos de producción.',footerRight:'Diseñador Multimedia Senior',photoNote:'Foto próximamente',badgeFeatured:'Destacado',badgeCampaign:'Campaña',multiTitle:'Diseño de campaña multicanal',multiDesc:'Creatividad integrada para campañas digitales en redes sociales, email y display.',sjrtDesc:'Identidad visual y sistemas de contenido escalables para el grupo de medios públicos de Jalisco — unificados en TV, radio y plataformas digitales.',mcDesc:'Sistema visual para campaña política — redes sociales, anuncios digitales y piezas para broadcast.',crownDesc:'Contenido de redes sociales y gráficos promocionales para cliente hotelero.',hotelsTitle:'Gráficos de redes sociales con marca',hotelsDesc:'Sistema de contenido consistente para marca hotelera en múltiples propiedades.',beisDesc:'Identidad de marca, logo, plantillas de redes sociales y sistema de contenido editable para creadora de contenido.',ovvoDesc:'Diseño web e identidad de marca para proyecto multiplataforma.',gfDesc:'API del clima + p5.js + Node.js → visuales para redes sociales generados automáticamente en tiempo real.'}};
+let lang='en';
+function setLang(l){lang=l;document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-es').classList.toggle('active',l==='es');const c=copy[l];const set=(id,val)=>{const el=document.getElementById(id);if(el)el.innerHTML=val;};set('cta-nav',c.cta);set('hero-tag',c.tag);set('hero-title',c.title);set('hero-subtitle',c.subtitle);set('hero-sub',c.sub);set('btn-work',c.btnWork);set('btn-contact',c.btnContact);set('stat1',c.stat1);set('stat2',c.stat2);set('stat3',c.stat3);set('work-label',c.workLabel);set('work-heading',c.workHeading);set('data-label',c.dataLabel);set('data-heading',c.dataHeading);set('data-badge',c.dataBadge);set('mibici-title',c.mibiciTitle);set('mibici-desc',c.mibiciDesc);set('github-link',c.githubLink);set('exp-label',c.expLabel);set('exp-heading',c.expHeading);set('katfish-desc',c.katfishDesc);set('ovvos-desc',c.ovvosDesc);set('bikepunks-desc',c.bikepunksDesc);set('chardesign-desc',c.chardesignDesc);set('about-label',c.aboutLabel);set('about-p1',c.aboutP1);set('about-p2',c.aboutP2);set('about-highlight',c.aboutHighlight);set('about-p3',c.aboutP3);set('avail-text',c.availText);set('sk1',c.sk1);set('sk2',c.sk2);set('sk3',c.sk3);set('sk4',c.sk4);set('exp-bars-title',c.expBarsTitle);set('contact-heading',c.contactHeading);set('contact-sub',c.contactSub);set('footer-right',c.footerRight);set('photo-note',c.photoNote);set('badge-featured',c.badgeFeatured);set('badge-campaign',c.badgeCampaign);set('multi-title',c.multiTitle);set('multi-desc',c.multiDesc);set('sjrt-desc',c.sjrtDesc);set('mc-desc',c.mcDesc);set('crown-desc',c.crownDesc);set('hotels-title',c.hotelsTitle);set('hotels-desc',c.hotelsDesc);set('beis-desc',c.beisDesc);set('ovvo-desc',c.ovvoDesc);set('gf-desc',c.gfDesc);}
+</script>
+</body>
+</html>
