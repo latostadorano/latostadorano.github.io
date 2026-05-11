@@ -1,0 +1,7 @@
+._*
+.DS_Store
+.claude/
+*.py
+*.sh
+pablo_islas_portfolio_context.md
+book.html

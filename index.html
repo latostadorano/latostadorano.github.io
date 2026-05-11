@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pablo Islas — Multimedia & Digital Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #EDEAE5;
+      --ink:        #0D0D0D;
+      --red:        #E82B0A;
+      --muted:      #7A7A72;
+      --border:     2px solid #0D0D0D;
+      --gap:        3px;
+      --grad-top:    rgb(150,160,170);
+      --grad-bottom: rgb(180,190,200);
+      --pablo-color: rgb(150,130,160);
+      --islas-color: rgb(130,150,160);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLL PROGRESS ─────────────────────────── */
+    .scroll-line {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--red);
+      z-index: 300;
+      width: 0%;
+      transition: width 0.08s linear;
+    }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: var(--bg);
+      border-bottom: var(--border);
+    }
+
+    .nav-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .nav-name span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+
+    .nav-cv {
+      color: var(--bg) !important;
+      background: var(--ink);
+      padding: 5px 10px;
+      transition: background 0.15s !important;
+    }
+
+    .nav-cv:hover { background: var(--red) !important; }
+
+    /* ─── TICKER ───────────────────────────────────── */
+    .ticker {
+      overflow: hidden;
+      border-bottom: var(--border);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0 0 4px;
+      margin-top: 44px;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      align-items: center;
+      animation: ticker-scroll 30s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0 32px;
+      line-height: 1;
+    }
+
+    .ticker-dot {
+      color: var(--red);
+      font-size: 8px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker-scroll {
+      from { transform: translateX(0) translateY(6px); }
+      to   { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── HERO ─────────────────────────────────────── */
+    #hero {
+      min-height: calc(100svh - 72px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 24px 0;
+      border-bottom: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 13vw, 220px);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+
+    .hero-name .red { color: var(--red); }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 20px 24px 32px;
+      border-top: var(--border);
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      margin-left: -24px;
+      margin-right: -24px;
+    }
+
+    .hero-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 2;
+    }
+
+    .hero-statement {
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 1.4;
+      max-width: 380px;
+      text-align: right;
+    }
+
+    .hero-statement em {
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* ─── SECTION HEADER ───────────────────────────── */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 24px;
+      border-bottom: var(--border);
+      background: linear-gradient(to bottom, var(--grad-top), var(--grad-bottom));
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 46px;
+      letter-spacing: 0.03em;
+      color: var(--pablo-color);
+    }
+
+    .section-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ─── SCROLL OFFSET FOR FIXED NAV ─────────────── */
+    #work, #skills, #about, #contact, #experience {
+      scroll-margin-top: 48px;
+    }
+
+    /* ─── PROJECT GROUPS ───────────────────────────── */
+    .project-group { border-bottom: var(--border); }
+
+    .group-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1.6fr 140px;
+      border-bottom: var(--border);
+      background: #fff;
+    }
+
+    .group-header > div {
+      padding: 16px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-right: var(--border);
+    }
+
+    .group-header > div:last-child { border-right: none; }
+
+    .gh-num {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .gh-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(22px, 2.2vw, 30px);
+      letter-spacing: 0.03em;
+      color: var(--islas-color);
+      line-height: 1;
+    }
+
+    .gh-type {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      line-height: 1.6;
+      align-self: flex-end;
+    }
+
+    .gh-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      align-self: flex-end;
+    }
+
+    /* ─── IMAGE GRID ───────────────────────────────── */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: var(--gap);
+      padding: var(--gap);
+      background: var(--ink);
+    }
+
+    .g2 { grid-template-columns: repeat(2, 1fr); }
+    .g3 { grid-template-columns: repeat(3, 1fr); }
+    .g4 { grid-template-columns: repeat(4, 1fr); }
+    .g5 { grid-template-columns: repeat(5, 1fr); }
+    .g6 { grid-template-columns: repeat(6, 1fr); }
+
+    .img-item {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+      cursor: pointer;
+    }
+
+    /* 4:5 — Instagram portrait (1080×1350) */
+    .img-item.v    { aspect-ratio: 4 / 5; }
+
+    /* 1:1 — square */
+    .img-item.sq   { aspect-ratio: 1 / 1; }
+
+    /* 9:16 — tall portrait (AI images 816×1456) */
+    .img-item.tall { aspect-ratio: 9 / 16; }
+
+    /* 16:9 — landscape */
+    .img-item.l    { aspect-ratio: 16 / 9; }
+
+    .img-item img,
+    .img-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  filter 0.3s ease;
+    }
+
+    .img-item:hover img,
+    .img-item:hover video {
+      transform: scale(1.04);
+      filter: brightness(0.7);
+    }
+
+    .img-item.logo { background: var(--bg); cursor: default; }
+    .img-item.logo img { object-fit: contain; }
+
+    .yt-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+      color: #fff;
+      line-height: 1;
+      z-index: 2;
+      pointer-events: none;
+      text-shadow: 0 4px 28px rgba(0,0,0,0.6);
+      transition: opacity 0.25s;
+    }
+    .img-item:hover .yt-play-btn { opacity: 1; }
+
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .img-item:hover .img-overlay { opacity: 1; }
+
+    .overlay-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--red);
+      margin-bottom: 3px;
+    }
+
+    .overlay-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    /* ─── PROJECT POPUP ───────────────────────────── */
+    #proj-popup {
+      position: fixed;
+      z-index: 800;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.14s ease, transform 0.14s ease;
+      border: var(--border);
+      background: var(--bg);
+      box-shadow: 8px 8px 0 rgba(13,13,13,0.12);
+      padding: 16px 18px;
+      max-width: 300px;
+    }
+
+    #proj-popup.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #proj-popup-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    #proj-popup-text {
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    /* ─── HOVER ZOOM (4chan-style, editorial) ──────── */
+    #img-zoom {
+      position: fixed;
+      z-index: 800;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.14s ease, transform 0.14s ease;
+      border: var(--border);
+      background: var(--bg);
+      box-shadow: 8px 8px 0 rgba(13,13,13,0.12);
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    #img-zoom.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #img-zoom img {
+      display: block;
+      max-width: 380px;
+      max-height: 70vh;
+      width: auto;
+      height: auto;
+    }
+
+    /* ─── SKILLS SECTION ───────────────────────────── */
+    #skills { border-bottom: var(--border); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+
+    .skill-cat {
+      padding: 18px 24px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--red);
+      border-bottom: 1px solid rgba(13,13,13,0.12);
+      border-right: var(--border);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 20px;
+    }
+
+    .skill-tags {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(13,13,13,0.12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border: 1px solid rgba(13,13,13,0.3);
+      background: transparent;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      cursor: default;
+    }
+
+    .tag:hover {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .tag.hl {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .skill-cat:last-of-type,
+    .skill-tags:last-of-type { border-bottom: none; }
+
+    /* ─── ABOUT ────────────────────────────────────── */
+    #about { border-bottom: var(--border); }
+
+    .about-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .about-col { padding: 36px 24px; }
+    .about-col + .about-col { border-left: var(--border); }
+
+    .about-bio {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    .about-bio strong { font-weight: 700; }
+
+    /* ─── EXPERIENCE ───────────────────────────────── */
+    #experience { border-bottom: var(--border); }
+
+    .exp-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 90px;
+      gap: 32px;
+      padding: 22px 24px;
+      border-bottom: 1px solid rgba(13,13,13,0.1);
+      align-items: start;
+    }
+
+    .exp-row:last-child { border-bottom: none; }
+
+    .exp-company {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .exp-role { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+
+    .exp-where {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    .exp-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* ─── EDUCATION STRIP ──────────────────────────── */
+    .edu-strip {
+      display: flex;
+      flex-wrap: wrap;
+      border-top: var(--border);
+      border-bottom: var(--border);
+    }
+
+    .edu-item {
+      padding: 14px 24px;
+      border-right: var(--border);
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .edu-item:last-child { border-right: none; }
+
+    .edu-deg {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      margin-bottom: 3px;
+    }
+
+    .edu-school { font-size: 13px; font-weight: 600; }
+    .edu-inst   { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); }
+
+    /* ─── CONTACT ──────────────────────────────────── */
+    #contact {
+      padding: 72px 24px 56px;
+      border-bottom: var(--border);
+      background: linear-gradient(to bottom, var(--grad-top), var(--grad-bottom));
+    }
+
+    .contact-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 10vw, 150px);
+      line-height: 0.9;
+      margin-bottom: 44px;
+    }
+
+    .contact-headline span { color: var(--red); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: var(--border);
+      border-left: var(--border);
+    }
+
+    .contact-cell {
+      padding: 18px 24px;
+      border-right: var(--border);
+      border-bottom: var(--border);
+      background: #fff;
+    }
+
+    .contact-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .contact-cell a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-cell a:hover { color: var(--red); }
+
+    /* ─── FOOTER ───────────────────────────────────── */
+    footer {
+      padding: 13px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #fff;
+    }
+
+    /* ─── LIGHTBOX ─────────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.93);
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-height: 90vh;
+      max-width: 90vw;
+      object-fit: contain;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 18px; right: 22px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    #lightbox-close:hover { color: var(--red); }
+
+    #lightbox-caption {
+      position: absolute;
+      bottom: 20px; left: 24px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.35);
+      font-family: 'Space Mono', monospace;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 20px 22px;
+      transition: color 0.15s;
+      z-index: 1001;
+      line-height: 1;
+    }
+    .lb-nav:hover { color: #fff; }
+    .lb-nav.hidden { display: none; }
+    #lb-prev { left: 0; }
+    #lb-next { right: 0; }
+
+    /* ─── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 960px) {
+      .about-cols  { grid-template-columns: 1fr; }
+      .about-col + .about-col { border-left: none; border-top: var(--border); }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 140px 1fr; }
+      .exp-row { grid-template-columns: 1fr; gap: 6px; }
+      .exp-year { text-align: left; }
+      .group-header { grid-template-columns: 1fr 1fr; }
+      .group-header > div:last-child { grid-column: 1 / -1; border-right: none; border-top: 1px solid rgba(13,13,13,0.15); }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-statement { text-align: left; max-width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content { justify-content: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links li:not(:last-child) { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .edu-item { border-right: none; border-bottom: 1px solid rgba(13,13,13,0.15); }
+      .img-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .g2 { grid-template-columns: 1fr !important; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-cat { border-right: none; border-bottom: 1px solid rgba(13,13,13,0.15); }
+      .group-header { grid-template-columns: 1fr; }
+      .group-header > div + div { border-right: none; border-top: 1px solid rgba(13,13,13,0.12); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="scroll-line" id="scroll-line"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Pablo<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="cvs/pabloIslas_CV_DN.pdf" class="nav-cv" target="_blank">↓ CV</a></li>
+  </ul>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item">Pablo Islas</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Multimedia &amp; Digital Designer</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Guadalajara, Mexico</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Design / Motion / Creative Coding / AI</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">15+ years of design with attitude</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Available for work</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Pablo Islas</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Multimedia &amp; Digital Designer</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Guadalajara, Mexico</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Design / Motion / Creative Coding / AI</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">15+ years of design with attitude</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Available for work</span>
+    <span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-content">
+    <h1 class="hero-name">Pablo<br><span class="red">Islas.</span></h1>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-title">
+      Multimedia &amp; Digital Designer<br>
+      Guadalajara · MX &nbsp;·&nbsp; English C1<br>
+      behance.net/latostadorano
+    </p>
+    <p class="hero-statement">
+      Design with<br><em>structure, rhythm<br>&amp; attitude.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ─── WORK ──────────────────────────────────────────── -->
+<section id="work">
+  <div class="section-header">
+    <h2 class="section-title">Work</h2>
+    <span class="section-meta">Selected projects · 2024–2025</span>
+  </div>
+
+  <!-- 01 · Cabrona -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">01</span>
+        <div class="gh-name" data-popup="Brand identity and product content for Cabrona, an independent accessories label. Product photography and short video loops built for Instagram — bold type, minimal staging, zero compromise.">Cabrona</div>
+      </div>
+      <div class="gh-type">Branding / Product Content</div>
+      <div class="gh-year">Freelance — 2024</div>
+    </div>
+    <div class="img-grid g4">
+      <div class="img-item v" onclick="lb('imas/cabrona/cabrona_aretes.png','Cabrona — Aretes 01')">
+        <img src="imas/cabrona/cabrona_aretes.png" alt="Cabrona Aretes 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Cabrona</div><div class="overlay-title">Aretes 01</div></div>
+      </div>
+      <div class="img-item v">
+        <video autoplay muted loop playsinline>
+          <source src="imas/cabrona/cabrona_earings_1.mp4" type="video/mp4">
+        </video>
+        <div class="img-overlay"><div class="overlay-label">Cabrona</div><div class="overlay-title">Product Video 01</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/cabrona/cabrona_aretes_2.png','Cabrona — Aretes 02')">
+        <img src="imas/cabrona/cabrona_aretes_2.png" alt="Cabrona Aretes 02" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Cabrona</div><div class="overlay-title">Aretes 02</div></div>
+      </div>
+      <div class="img-item v">
+        <video autoplay muted loop playsinline>
+          <source src="imas/cabrona/cabrona_earings_2.mp4" type="video/mp4">
+        </video>
+        <div class="img-overlay"><div class="overlay-label">Cabrona</div><div class="overlay-title">Product Video 02</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 · SJRT Social Content -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">02</span>
+        <div class="gh-name" data-popup="Ongoing editorial and social content for Jalisco's public broadcast network — TV, radio, and news. Daily design at production speed: commemorative cards, cultural graphics, and branded posts across formats. Each piece built within strict brand guidelines while staying visually sharp and relevant.">SJRT Social Content</div>
+      </div>
+      <div class="gh-type">Social Media / Digital Content</div>
+      <div class="gh-year">SJRT — 2025<br>Ongoing</div>
+    </div>
+    <div class="img-grid g4">
+      <div class="img-item v" onclick="lb('imas/postales/postal_acuario.png','Acuario — JaliscoTV')">
+        <img src="imas/postales/postal_acuario.png" alt="Acuario" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoTV</div><div class="overlay-title">Día del Acuario</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/postales/postal_leonora.png','Leonora Carrington — JaliscoTV')">
+        <img src="imas/postales/postal_leonora.png" alt="Leonora" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoTV</div><div class="overlay-title">Leonora Carrington</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/postales/postal_taco.png','Día del Taco — JaliscoTV')">
+        <img src="imas/postales/postal_taco.png" alt="Taco" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoTV</div><div class="overlay-title">Día del Taco</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/postales/postal_artesano.png','Artesanos — JaliscoTV')">
+        <img src="imas/postales/postal_artesano.png" alt="Artesano" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoTV</div><div class="overlay-title">Artesanos</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/postales/postal_bailarines_2.png','Bailarines — JaliscoTV')">
+        <img src="imas/postales/postal_bailarines_2.png" alt="Bailarines" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoTV</div><div class="overlay-title">Bailarines</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/postales/postal_bosques.png','Bosques — JaliscoTV')">
+        <img src="imas/postales/postal_bosques.png" alt="Bosques" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoTV</div><div class="overlay-title">Bosques</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/postales/postal_bombero_2.png','Bomberos — JaliscoTV')">
+        <img src="imas/postales/postal_bombero_2.png" alt="Bombero" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoTV</div><div class="overlay-title">Bomberos</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/postales/postal_zuno.png','Zuno — JaliscoRADIO')">
+        <img src="imas/postales/postal_zuno.png" alt="Zuno" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">JaliscoRADIO</div><div class="overlay-title">Zuno</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 · Summer Programs -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">03</span>
+        <div class="gh-name" data-popup="Visual campaign system for SJRT's 2025 summer program offering. Designed a cohesive set of vertical assets for social media — consistent typography, color, and layout across multiple pieces delivered under a tight production deadline.">Summer Programs</div>
+      </div>
+      <div class="gh-type">Campaign / Visual System</div>
+      <div class="gh-year">SJRT — 2025</div>
+    </div>
+    <div class="img-grid g5">
+      <div class="img-item v" onclick="lb('imas/cursos_verano/cursosVerano_vertical_1.png','Summer Programs SJRT — 01')">
+        <img src="imas/cursos_verano/cursosVerano_vertical_1.png" alt="Cursos 1" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Campaign</div><div class="overlay-title">Summer Programs 01</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/cursos_verano/cursosVerano_vertical_2.png','Summer Programs SJRT — 02')">
+        <img src="imas/cursos_verano/cursosVerano_vertical_2.png" alt="Cursos 2" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Campaign</div><div class="overlay-title">Summer Programs 02</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/cursos_verano/cursosVerano_vertical_3.png','Summer Programs SJRT — 03')">
+        <img src="imas/cursos_verano/cursosVerano_vertical_3.png" alt="Cursos 3" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Campaign</div><div class="overlay-title">Summer Programs 03</div></div>
+      </div>
+      <div class="img-item v" onclick="lb('imas/cursos_verano/cursosVerano_vertical_4.png','Summer Programs SJRT — 04')">
+        <img src="imas/cursos_verano/cursosVerano_vertical_4.png" alt="Cursos 4" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Campaign</div><div class="overlay-title">Summer Programs 04</div></div>
+      </div>
+      <div class="img-item v">
+        <video autoplay muted loop playsinline>
+          <source src="imas/cursos_verano/social_u6946367459_flat_vector_illustration_of_a_professional_tv_net_37ecac33-92f3-4d59-abbd-edc34a3d6518_2.mp4" type="video/mp4">
+        </video>
+        <div class="img-overlay"><div class="overlay-label">Campaign</div><div class="overlay-title">Promo Video</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 · Generative Forecasts -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">04</span>
+        <div class="gh-name" data-popup="A real-time content automation system built with p5.js and a live Weather API. Visual templates update automatically based on current conditions — cutting manual production by 10+ hours per week and lifting engagement by 30%. A working example of design, code, and data operating as one.">Generative Forecasts</div>
+      </div>
+      <div class="gh-type">Creative Coding / API Automation</div>
+      <div class="gh-year">SJRT — 2025</div>
+    </div>
+    <div class="img-grid g5">
+      <div class="img-item sq" onclick="lb('behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg','Generative Forecasts — 01')">
+        <img src="behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg" alt="Forecast 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">p5.js + API</div><div class="overlay-title">Weather Visual 01</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Generative-Forecasts/2f23bb235249179.68d38124d37b3.jpg','Generative Forecasts — 02')">
+        <img src="behance_download/Generative-Forecasts/2f23bb235249179.68d38124d37b3.jpg" alt="Forecast 02" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">p5.js + API</div><div class="overlay-title">Weather Visual 02</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Generative-Forecasts/59b0ca235249179.68d38124d3ece.png','Generative Forecasts — 03')">
+        <img src="behance_download/Generative-Forecasts/59b0ca235249179.68d38124d3ece.png" alt="Forecast 03" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">p5.js + API</div><div class="overlay-title">Weather Visual 03</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Generative-Forecasts/d3a781235249179.68d381240c04c.png','Generative Forecasts — 04')">
+        <img src="behance_download/Generative-Forecasts/d3a781235249179.68d381240c04c.png" alt="Forecast 04" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">p5.js + API</div><div class="overlay-title">Weather Visual 04</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Generative-Forecasts/de2c2d235249179.68d381240c8a4.png','Generative Forecasts — 05')">
+        <img src="behance_download/Generative-Forecasts/de2c2d235249179.68d381240c8a4.png" alt="Forecast 05" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">p5.js + API</div><div class="overlay-title">Weather Visual 05</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 · Music Video — Katfish -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">05</span>
+        <div class="gh-name" data-popup="Visual direction for a music video by independent artist Katfish. Frame composition, color treatment, and motion design — all built around the track's mood rather than illustrating it literally.">Music Video — Katfish</div>
+      </div>
+      <div class="gh-type">Motion / Visual Direction</div>
+      <div class="gh-year">Personal — 2024</div>
+    </div>
+    <div class="img-grid g5">
+      <div class="img-item sq">
+        <video autoplay muted loop playsinline>
+          <source src="imas/ai/horsey_4.mp4" type="video/mp4">
+        </video>
+        <div class="img-overlay"><div class="overlay-label">Katfish</div><div class="overlay-title">Motion</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Music-video-for-Katfish/1.png','Katfish — 01')">
+        <img src="behance_download/Music-video-for-Katfish/1.png" alt="Katfish 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Katfish</div><div class="overlay-title">Frame 01</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Music-video-for-Katfish/2.png','Katfish — 02')">
+        <img src="behance_download/Music-video-for-Katfish/2.png" alt="Katfish 02" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Katfish</div><div class="overlay-title">Frame 02</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Music-video-for-Katfish/3.png','Katfish — 03')">
+        <img src="behance_download/Music-video-for-Katfish/3.png" alt="Katfish 03" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Katfish</div><div class="overlay-title">Frame 03</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Music-video-for-Katfish/4.png','Katfish — 04')">
+        <img src="behance_download/Music-video-for-Katfish/4.png" alt="Katfish 04" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Katfish</div><div class="overlay-title">Frame 04</div></div>
+      </div>
+    </div>
+    <div class="img-grid g3">
+      <div class="img-item sq" onclick="lb('behance_download/Music-video-for-Katfish/08acab207706375.66e1f3f2f3e48.png','Katfish — 01')">
+        <img src="behance_download/Music-video-for-Katfish/08acab207706375.66e1f3f2f3e48.png" alt="Katfish 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Katfish</div><div class="overlay-title">Frame 01</div></div>
+      </div>
+      <div class="img-item" data-yt="true" style="grid-column: span 2; aspect-ratio: 16/9; cursor: pointer;" onclick="window.open('https://www.youtube.com/watch?v=S81ddx_oIxo&list=RDS81ddx_oIxo&start_radio=1','_blank')">
+        <img src="https://img.youtube.com/vi/S81ddx_oIxo/hqdefault.jpg" alt="Watch on YouTube" loading="lazy">
+        <div class="yt-play-btn">▶</div>
+        <div class="img-overlay"><div class="overlay-label">YouTube</div><div class="overlay-title">Watch Music Video</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 · OvvO -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">06</span>
+        <div class="gh-name" data-popup="A series of generative GIFs made with p5.js for @ovvo_bot — a Twitter bot that posted generative art automatically. Part of an ongoing collection of creative coding and generative art. Each piece is a living system, not a static image.">OvvO</div>
+      </div>
+      <div class="gh-type">Visual Identity / Motion</div>
+      <div class="gh-year">Personal — 2024</div>
+    </div>
+    <div class="img-grid g6">
+      <div class="img-item sq" onclick="lb('imas/OvvO/ovvo_gifs/1.gif','OvvO — 01')">
+        <img src="imas/OvvO/ovvo_gifs/1.gif" alt="OvvO 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">OvvO</div><div class="overlay-title">Animation 01</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('imas/OvvO/ovvo_gifs/2.gif','OvvO — 02')">
+        <img src="imas/OvvO/ovvo_gifs/2.gif" alt="OvvO 02" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">OvvO</div><div class="overlay-title">Animation 02</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('imas/OvvO/ovvo_gifs/2_1.gif','OvvO — 03')">
+        <img src="imas/OvvO/ovvo_gifs/2_1.gif" alt="OvvO 03" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">OvvO</div><div class="overlay-title">Animation 03</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('imas/OvvO/ovvo_gifs/3.gif','OvvO — 04')">
+        <img src="imas/OvvO/ovvo_gifs/3.gif" alt="OvvO 04" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">OvvO</div><div class="overlay-title">Animation 04</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('imas/OvvO/ovvo_gifs/5.gif','OvvO — 05')">
+        <img src="imas/OvvO/ovvo_gifs/5.gif" alt="OvvO 05" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">OvvO</div><div class="overlay-title">Animation 05</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('imas/OvvO/ovvo_gifs/6.gif','OvvO — 06')">
+        <img src="imas/OvvO/ovvo_gifs/6.gif" alt="OvvO 06" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">OvvO</div><div class="overlay-title">Animation 06</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 · AI & Generative -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">07</span>
+        <div class="gh-name" data-popup="An ongoing experimental series exploring Midjourney, Stable Diffusion, and Runway. The focus is prompt craft, image coherence, and pushing aesthetic limits. Also used as reference for AI visual evaluation — assessing lighting, anatomy, composition, and narrative alignment in generated imagery.">AI &amp; Generative</div>
+      </div>
+      <div class="gh-type">Experimental / Image Generation</div>
+      <div class="gh-year">Personal — 2024–2025</div>
+    </div>
+    <div class="img-grid g6">
+      <div class="img-item tall" onclick="lb('imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png','AI Illustration — 01')">
+        <img src="imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png" alt="AI Art 1" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">AI / Generative</div><div class="overlay-title">Illustration 01</div></div>
+      </div>
+      <div class="img-item tall">
+        <video autoplay muted loop playsinline>
+          <source src="imas/ai/nfts/bees.mp4" type="video/mp4">
+        </video>
+        <div class="img-overlay"><div class="overlay-label">AI / NFT</div><div class="overlay-title">Bees</div></div>
+      </div>
+      <div class="img-item tall" onclick="lb('imas/ai/0_asdf1.jpg','AI Illustration — 02')">
+        <img src="imas/ai/0_asdf1.jpg" alt="AI Art 2" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">AI / Generative</div><div class="overlay-title">Illustration 02</div></div>
+      </div>
+      <div class="img-item tall">
+        <video autoplay muted loop playsinline>
+          <source src="imas/ai/nfts/birds_1.mp4" type="video/mp4">
+        </video>
+        <div class="img-overlay"><div class="overlay-label">AI / NFT</div><div class="overlay-title">Birds 01</div></div>
+      </div>
+      <div class="img-item tall" onclick="lb('imas/ai/ai_ovvos/1%202.png','AI OvvO — 01')">
+        <img src="imas/ai/ai_ovvos/1%202.png" alt="AI OvvO 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">AI / Generative</div><div class="overlay-title">OvvO 01</div></div>
+      </div>
+      <div class="img-item tall">
+        <video autoplay muted loop playsinline>
+          <source src="imas/ai/nfts/birds_2.mp4" type="video/mp4">
+        </video>
+        <div class="img-overlay"><div class="overlay-label">AI / NFT</div><div class="overlay-title">Birds 02</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 · La Chica del Beis -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">08</span>
+        <div class="gh-name" data-popup="Visual identity and social content for La Chica del Beis, a baseball lifestyle brand rooted in urban culture. Character-driven graphics, earthy palette, and editorial layouts built for Instagram — bold attitude, consistent aesthetic.">La Chica del Beis</div>
+      </div>
+      <div class="gh-type">Branding / Social Content</div>
+      <div class="gh-year">Personal — 2024</div>
+    </div>
+    <div class="img-grid g4">
+      <div class="img-item sq" onclick="lb('behance_download/La-Chica-del-Beis/b41696207709113.66e1fde4ef156.png','La Chica del Beis — 01')">
+        <img src="behance_download/La-Chica-del-Beis/b41696207709113.66e1fde4ef156.png" alt="La Chica del Beis 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">La Chica del Beis</div><div class="overlay-title">Artwork 01</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/La-Chica-del-Beis/e44c1c207709113.66e1fde4eebcb.png','La Chica del Beis — 02')">
+        <img src="behance_download/La-Chica-del-Beis/e44c1c207709113.66e1fde4eebcb.png" alt="La Chica del Beis 02" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">La Chica del Beis</div><div class="overlay-title">Artwork 02</div></div>
+      </div>
+      <div class="img-item sq logo" data-logo="true">
+        <img src="behance_download/La-Chica-del-Beis/98fdb6207709113.6745ffe612931.png" alt="La Chica del Beis Logo 01" loading="lazy">
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/La-Chica-del-Beis/359933207709113.66e1fde4ef5e3.png','La Chica del Beis — 04')">
+        <img src="behance_download/La-Chica-del-Beis/359933207709113.66e1fde4ef5e3.png" alt="La Chica del Beis 04" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">La Chica del Beis</div><div class="overlay-title">Artwork 04</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 · Bike Punk Flyers -->
+  <div class="project-group">
+    <div class="group-header">
+      <div>
+        <span class="gh-num">09</span>
+        <div class="gh-name" data-popup="Bike Punks is a self-organized nocturnal bike ride. This flyer series was a collaboration to promote the rides — design in service of the community, no middlemen.">Bike Punk Flyers</div>
+      </div>
+      <div class="gh-type">Print / Flyer Design</div>
+      <div class="gh-year">Personal — 2024</div>
+    </div>
+    <div class="img-grid g5">
+      <div class="img-item sq" onclick="lb('behance_download/Bike-Punks-flyers/1.png','Bike Punk — 01')">
+        <img src="behance_download/Bike-Punks-flyers/1.png" alt="Bike Punk 01" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Bike Punk</div><div class="overlay-title">Flyer 01</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Bike-Punks-flyers/2.png','Bike Punk — 02')">
+        <img src="behance_download/Bike-Punks-flyers/2.png" alt="Bike Punk 02" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Bike Punk</div><div class="overlay-title">Flyer 02</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Bike-Punks-flyers/3.png','Bike Punk — 03')">
+        <img src="behance_download/Bike-Punks-flyers/3.png" alt="Bike Punk 03" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Bike Punk</div><div class="overlay-title">Flyer 03</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Bike-Punks-flyers/4.png','Bike Punk — 04')">
+        <img src="behance_download/Bike-Punks-flyers/4.png" alt="Bike Punk 04" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Bike Punk</div><div class="overlay-title">Flyer 04</div></div>
+      </div>
+      <div class="img-item sq" onclick="lb('behance_download/Bike-Punks-flyers/5.png','Bike Punk — 05')">
+        <img src="behance_download/Bike-Punks-flyers/5.png" alt="Bike Punk 05" loading="lazy">
+        <div class="img-overlay"><div class="overlay-label">Bike Punk</div><div class="overlay-title">Flyer 05</div></div>
+      </div>
+    </div>
+  </div>
+
+</section><!-- /work -->
+
+<!-- ─── SKILLS ────────────────────────────────────────── -->
+<section id="skills">
+  <div class="section-header">
+    <h2 class="section-title">Skills</h2>
+    <span class="section-meta">Tools &amp; disciplines</span>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-cat">Design &amp;<br>Multimedia</div>
+    <div class="skill-tags">
+      <span class="tag hl">Illustrator</span>
+      <span class="tag hl">Photoshop</span>
+      <span class="tag hl">After Effects</span>
+      <span class="tag hl">Premiere Pro</span>
+      <span class="tag">InDesign</span>
+      <span class="tag">Final Cut</span>
+      <span class="tag">CapCut</span>
+      <span class="tag hl">Figma</span>
+      <span class="tag">Canva</span>
+      <span class="tag">GIF Animation</span>
+    </div>
+
+    <div class="skill-cat">Creative<br>Coding &amp; AI</div>
+    <div class="skill-tags">
+      <span class="tag hl">p5.js</span>
+      <span class="tag hl">TouchDesigner</span>
+      <span class="tag">Creative Coding</span>
+      <span class="tag hl">MidJourney</span>
+      <span class="tag hl">Stable Diffusion</span>
+      <span class="tag hl">Claude</span>
+      <span class="tag">Runway</span>
+      <span class="tag">Adobe Firefly</span>
+      <span class="tag">Nano Banana</span>
+      <span class="tag">Workflow Automation</span>
+    </div>
+
+    <div class="skill-cat">Data &amp;<br>Development</div>
+    <div class="skill-tags">
+      <span class="tag hl">Python</span>
+      <span class="tag hl">Git &amp; GitHub</span>
+      <span class="tag">APIs</span>
+      <span class="tag">Data Analysis</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Tableau</span>
+      <span class="tag">Jupyter Notebooks</span>
+    </div>
+
+    <div class="skill-cat">Marketing &amp;<br>Platforms</div>
+    <div class="skill-tags">
+      <span class="tag hl">Branding Systems</span>
+      <span class="tag hl">Social Media</span>
+      <span class="tag hl">Content Creation</span>
+      <span class="tag">Email Marketing</span>
+      <span class="tag">Google Ads</span>
+      <span class="tag">Landing Pages</span>
+      <span class="tag">Digital Campaigns</span>
+      <span class="tag">Automation Tools</span>
+    </div>
+
+    <div class="skill-cat">Soft<br>Skills</div>
+    <div class="skill-tags">
+      <span class="tag">Art Direction</span>
+      <span class="tag">Team Leadership</span>
+      <span class="tag">Visual Storytelling</span>
+      <span class="tag">Cross-functional Collaboration</span>
+      <span class="tag">Fast Learner</span>
+      <span class="tag">Problem Solving</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─────────────────────────────────────────── -->
+<section id="about">
+  <div class="section-header">
+    <h2 class="section-title">About</h2>
+    <span class="section-meta">Pablo Islas · GDL, Mexico</span>
+  </div>
+
+  <div class="about-cols">
+    <div class="about-col">
+      <p class="about-bio">
+        Multimedia designer with over <strong>15 years of experience</strong> in visual communication, branding, and digital content creation.<br><br>
+        Currently at <strong>SJRT</strong> (Jalisco TV, Radio &amp; News), designing for real audiences in real formats. Previously led creative teams at a digital marketing agency across branding, social media, and political campaigns.<br><br>
+        My work blends <strong>graphic design, motion, generative AI tools, and creative coding</strong>. I use p5.js on a Tuesday and deliver an editorial billboard on Wednesday.<br><br>
+        B.A. in Integral Design from <strong>ITESO</strong>. Technical Degree in Audiovisual Media from <strong>CAAV</strong>. Data Analytics at <strong>TripleTen</strong>. CS50 Python via <strong>Harvard</strong>.
+      </p>
+    </div>
+    <div class="about-col" style="display:flex;flex-direction:column;justify-content:center;gap:28px;">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--red);margin-bottom:6px;">Location</div>
+        <div style="font-size:14px;font-weight:600;">Guadalajara, Jalisco — Mexico</div>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--red);margin-bottom:6px;">Languages</div>
+        <div style="font-size:14px;font-weight:600;">Spanish (Native) · English (Advanced C1)</div>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--red);margin-bottom:6px;">Availability</div>
+        <div style="font-size:14px;font-weight:600;">Open to new projects &amp; remote collaborations</div>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--red);margin-bottom:6px;">Interests</div>
+        <div style="font-size:14px;line-height:1.8;">Generative art · Visuals · Graphic design · Creative coding<br>Data · Electronics · Underground culture · Cats · Continuous learning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE ────────────────────────────────────── -->
+<section id="experience">
+  <div class="section-header" style="border-top:var(--border);">
+    <h2 class="section-title">Experience</h2>
+    <span class="section-meta">2009 — Present</span>
+  </div>
+
+  <div class="exp-row">
+    <div class="exp-company">SJRT</div>
+    <div>
+      <div class="exp-role">Multimedia Designer</div>
+      <div class="exp-where">Jalisco TV · Radio · News — Guadalajara, MX</div>
+      <div class="exp-desc">Designs and produces visual content across social media, news broadcasts, and digital channels — managing simultaneous delivery for TV, radio, and web. Built scalable Canva template systems enabling social media teams to publish on-brand content independently. Developed a generative visual pipeline using p5.js and a real-time Weather API, automating daily social post production and saving 10+ hours/week. Creates motion graphics and animated assets for live events, news programming, and promotional campaigns across broadcast and digital formats.</div>
+    </div>
+    <div class="exp-year">2025<br>— Now</div>
+  </div>
+
+  <div class="exp-row">
+    <div class="exp-company">Indatcom</div>
+    <div>
+      <div class="exp-role">Senior Designer</div>
+      <div class="exp-where">Digital Marketing Agency — Guadalajara, MX</div>
+      <div class="exp-desc">Led multidisciplinary creative teams — designers, editors, and animators — across 8 years of branding, digital marketing, and political communication campaigns. Designed full-cycle campaign materials for clients including Arriva Hospitality Group and Crown Hotels: social media systems, Google Ads, email marketing, animated banners, and landing pages. Introduced AI image generation tools, workflow automation, and creative coding into agency production — expanding creative output without adding headcount. Maintained visual quality and brand consistency across high-volume simultaneous client accounts.</div>
+    </div>
+    <div class="exp-year">2016<br>— 2024</div>
+  </div>
+
+  <div class="exp-row">
+    <div class="exp-company">CollinsCom</div>
+    <div>
+      <div class="exp-role">Graphic Designer</div>
+      <div class="exp-where">Guadalajara, MX</div>
+      <div class="exp-desc">Designed brand identities, editorial layouts, executive presentations, and print/digital materials for corporate clients across industries. Managed the complete production pipeline from concept through prepress, collaborating with production teams to ensure technical quality and on-time delivery.</div>
+    </div>
+    <div class="exp-year">2009<br>— 2014</div>
+  </div>
+</section>
+
+<!-- EDUCATION STRIP -->
+<div class="edu-strip">
+  <div class="edu-item">
+    <div class="edu-deg">B.A.</div>
+    <div class="edu-school">Integral Design</div>
+    <div class="edu-inst">ITESO University</div>
+  </div>
+  <div class="edu-item">
+    <div class="edu-deg">Tech Degree</div>
+    <div class="edu-school">Audiovisual Media</div>
+    <div class="edu-inst">CAAV</div>
+  </div>
+  <div class="edu-item">
+    <div class="edu-deg">Certification</div>
+    <div class="edu-school">Data Analytics</div>
+    <div class="edu-inst">TripleTen — 2025</div>
+  </div>
+  <div class="edu-item">
+    <div class="edu-deg">Course</div>
+    <div class="edu-school">CS50 Python</div>
+    <div class="edu-inst">HarvardX</div>
+  </div>
+  <div class="edu-item">
+    <div class="edu-deg">Certification</div>
+    <div class="edu-school">Agency Partner</div>
+    <div class="edu-inst">HubSpot</div>
+  </div>
+</div>
+
+<!-- ─── CONTACT ───────────────────────────────────────── -->
+<section id="contact">
+  <h2 class="contact-headline">Let's work<span>.</span></h2>
+  <div class="contact-grid">
+    <div class="contact-cell">
+      <div class="contact-label">Email</div>
+      <a href="mailto:pablotoust@gmail.com">pablotoust@gmail.com</a>
+    </div>
+    <div class="contact-cell">
+      <div class="contact-label">Portfolio</div>
+      <a href="https://www.behance.net/latostadorano" target="_blank">behance.net/latostadorano</a>
+    </div>
+    <div class="contact-cell">
+      <div class="contact-label">LinkedIn</div>
+      <a href="https://linkedin.com/in/pabloislas" target="_blank">linkedin.com/in/pabloislas</a>
+    </div>
+    <div class="contact-cell">
+      <div class="contact-label">GitHub</div>
+      <a href="https://github.com/latostadorano" target="_blank">github.com/latostadorano</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Pablo Islas © 2025</span>
+  <span>Multimedia &amp; Digital Designer — GDL, MX</span>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lightbox-close" onclick="closeLb()" aria-label="Close">✕</button>
+  <button id="lb-prev" class="lb-nav hidden" onclick="lbNav(-1)" aria-label="Previous">←</button>
+  <button id="lb-next" class="lb-nav hidden" onclick="lbNav(1)" aria-label="Next">→</button>
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
+</div>
+
+<!-- HOVER ZOOM -->
+<div id="img-zoom"><img id="zoom-img" src="" alt=""></div>
+
+<!-- PROJECT POPUP -->
+<div id="proj-popup">
+  <div id="proj-popup-label">Project</div>
+  <p id="proj-popup-text"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+<script>
+/* ─── LIGHTBOX ─────────────────────────────────────── */
+let lbItems = [], lbIdx = 0;
+
+function lb(src, caption) {
+  const all = Array.from(document.querySelectorAll('.img-item'));
+  const cur = all.find(it => it.querySelector('img')?.getAttribute('src') === src);
+  const group = cur?.closest('.project-group');
+  lbItems = group ? Array.from(group.querySelectorAll('.img-item')).filter(it => it.querySelector('img') && !it.dataset.yt && !it.dataset.logo) : cur ? [cur] : [];
+  lbIdx   = lbItems.indexOf(cur);
+  _lbShow(src, caption);
+}
+
+function _lbShow(src, cap) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = cap || '';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lb-prev').classList.toggle('hidden', lbItems.length <= 1 || lbIdx <= 0);
+  document.getElementById('lb-next').classList.toggle('hidden', lbItems.length <= 1 || lbIdx >= lbItems.length - 1);
+}
+
+function lbNav(dir) {
+  const next = lbItems[lbIdx + dir];
+  if (!next) return;
+  lbIdx += dir;
+  const img   = next.querySelector('img');
+  const title = next.querySelector('.overlay-title')?.textContent || '';
+  const label = next.querySelector('.overlay-label')?.textContent || '';
+  _lbShow(img.getAttribute('src'), label ? `${title} — ${label}` : title);
+}
+
+function closeLb() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  lbItems = []; lbIdx = 0;
+  setTimeout(() => { document.getElementById('lightbox-img').src = ''; }, 300);
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLb();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape')      closeLb();
+  if (e.key === 'ArrowLeft')   lbNav(-1);
+  if (e.key === 'ArrowRight')  lbNav(1);
+});
+
+/* ─── SCROLL PROGRESS ──────────────────────────────── */
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('scroll-line').style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+/* ─── PROJECT POPUP ────────────────────────────────── */
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const popup     = document.getElementById('proj-popup');
+  const popupText = document.getElementById('proj-popup-text');
+  const POP_W = 300;
+  const PAD   = 14;
+  let hideTimer;
+
+  document.querySelectorAll('.group-header').forEach(el => {
+    const nameEl = el.querySelector('.gh-name[data-popup]');
+    if (!nameEl) return;
+
+    el.addEventListener('mouseenter', () => {
+      clearTimeout(hideTimer);
+      popupText.textContent = nameEl.dataset.popup;
+      popup.classList.add('show');
+    });
+
+    el.addEventListener('mousemove', e => {
+      const h = popup.offsetHeight;
+      let x = e.clientX + 22;
+      let y = e.clientY - h / 2;
+      if (x + POP_W > window.innerWidth - PAD) x = e.clientX - POP_W - 22;
+      y = Math.max(PAD, Math.min(y, window.innerHeight - h - PAD));
+      popup.style.left = x + 'px';
+      popup.style.top  = y + 'px';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      popup.classList.remove('show');
+      hideTimer = setTimeout(() => { popupText.textContent = ''; }, 200);
+    });
+  });
+}
+
+/* ─── p5 HERO ANIMATION (OvvO-derived) ─────────────── */
+(function() {
+  const heroSketch = p => {
+    let backR, backG, backB;
+    let rectR, rectG, rectB;
+    let grad1, grad2, grad3, grad1_2, grad2_2, grad3_2;
+    let rDir, gDir, bDir, rrDir, ggDir, bbDir;
+    let grad1Dir, grad2Dir, grad3Dir;
+    let grad1_2Dir, grad2_2Dir, grad3_2Dir;
+    let c1, c2;
+
+    const heroEl   = document.getElementById('hero');
+    const heroName = document.querySelector('.hero-name');
+    const islasEl  = document.querySelector('.hero-name .red');
+
+    p.setup = () => {
+      const cnv = p.createCanvas(heroEl.offsetWidth, heroEl.offsetHeight);
+      cnv.parent('hero');
+      cnv.style('position', 'absolute');
+      cnv.style('top', '0');
+      cnv.style('left', '0');
+      cnv.style('z-index', '0');
+      cnv.elt.style.pointerEvents = 'none';
+
+      backR = p.random(20, 230); backG = p.random(20, 230); backB = p.random(20, 230);
+      rectR = p.random(20, 230); rectG = p.random(20, 230); rectB = p.random(20, 230);
+      grad1 = p.random(100, 200); grad2 = p.random(100, 200); grad3 = p.random(100, 200);
+      grad1_2 = grad1 + 30; grad2_2 = grad2 + 30; grad3_2 = grad3 + 30;
+
+      rDir = 0.1;  gDir = 0.2;  bDir = 0.3;
+      rrDir = -0.1; ggDir = -0.3; bbDir = -0.2;
+      grad1Dir = 0.3; grad2Dir = 0.2; grad3Dir = 0.1;
+      grad1_2Dir = 0.3; grad2_2Dir = 0.2; grad3_2Dir = 0.1;
+    };
+
+    p.draw = () => {
+      updateColors();
+      drawGradient();
+      heroName.style.color = `rgb(${~~backB},${~~backR},${~~backG})`;
+      islasEl.style.color  = `rgb(${~~rectR},${~~rectG},${~~rectB})`;
+      const root = document.documentElement.style;
+      root.setProperty('--grad-top',    `rgb(${~~p.red(c2)},${~~p.green(c2)},${~~p.blue(c2)})`);
+      root.setProperty('--grad-bottom', `rgb(${~~p.red(c1)},${~~p.green(c1)},${~~p.blue(c1)})`);
+      root.setProperty('--pablo-color', `rgb(${~~backB},${~~backR},${~~backG})`);
+      root.setProperty('--islas-color', `rgb(${~~rectR},${~~rectG},${~~rectB})`);
+    };
+
+    function updateColors() {
+      if (backR < 20 || backR > 230) rDir  *= -1;
+      if (backG < 20 || backG > 230) gDir  *= -1;
+      if (backB < 20 || backB > 230) bDir  *= -1;
+      backR += rDir; backG += gDir; backB += bDir;
+
+      if (rectR < 20 || rectR > 230) rrDir *= -1;
+      if (rectG < 20 || rectG > 230) ggDir *= -1;
+      if (rectB < 20 || rectB > 230) bbDir *= -1;
+      rectR += rrDir; rectG += ggDir; rectB += bbDir;
+
+      if (grad1   < 100 || grad1   > 200) grad1Dir   *= -1;
+      if (grad2   < 100 || grad2   > 200) grad2Dir   *= -1;
+      if (grad3   < 100 || grad3   > 200) grad3Dir   *= -1;
+      if (grad1_2 < 100 || grad1_2 > 200) grad1_2Dir *= -1;
+      if (grad2_2 < 100 || grad2_2 > 200) grad2_2Dir *= -1;
+      if (grad3_2 < 100 || grad3_2 > 200) grad3_2Dir *= -1;
+
+      grad1 += grad1Dir; grad2 += grad2Dir; grad3 += grad3Dir;
+      grad1_2 += grad1_2Dir; grad2_2 += grad2_2Dir; grad3_2 += grad3_2Dir;
+
+      c1 = p.color(grad1,   grad2,   grad3);
+      c2 = p.color(grad1_2, grad2_2, grad3_2);
+    }
+
+    function drawGradient() {
+      const ctx  = p.drawingContext;
+      const grad = ctx.createLinearGradient(0, 0, 0, p.height);
+      grad.addColorStop(0, `rgb(${~~p.red(c2)},${~~p.green(c2)},${~~p.blue(c2)})`);
+      grad.addColorStop(1, `rgb(${~~p.red(c1)},${~~p.green(c1)},${~~p.blue(c1)})`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, p.width, p.height);
+    }
+
+    p.windowResized = () => {
+      p.resizeCanvas(heroEl.offsetWidth, heroEl.offsetHeight);
+    };
+  };
+
+  new p5(heroSketch);
+}());
+</script>
+
+</body>
+</html>
