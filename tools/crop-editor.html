@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor de encuadre</title>
+<style>
+  :root{ --bg:#F3F0E9; --ink:#14130F; --red:#D6401C; --slate:#4B4E52; --line:#DDD7C9; --card:#FFFFFF; --ok:#1E7A46; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;padding-bottom:100px;}
+  header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:16px 28px;display:flex;justify-content:space-between;align-items:center;z-index:10;gap:16px;flex-wrap:wrap;}
+  header h1{font-size:17px;margin:0;}
+  header p{margin:2px 0 0;font-size:12.5px;color:var(--slate);}
+  #status{font-size:12.5px;color:var(--slate);font-family:"Consolas",monospace;}
+  #status.dirty{color:var(--red);}
+  #status.saved{color:var(--ok);}
+  #save{font:inherit;font-weight:600;background:var(--ink);color:var(--bg);border:none;padding:10px 20px;border-radius:4px;cursor:pointer;}
+  #save:disabled{opacity:.4;cursor:default;}
+  #save:hover:not(:disabled){background:var(--red);}
+  main{max-width:1400px;margin:0 auto;padding:24px 28px;}
+  .page-group{margin-bottom:36px;}
+  .page-group h2{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--line);cursor:ns-resize;user-select:none;}
+  .frame.wide{aspect-ratio:21/9;}
+  .frame img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+  .frame .hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);opacity:0;transition:opacity .15s;color:#fff;font-size:12px;font-family:monospace;text-shadow:0 1px 3px rgba(0,0,0,.6);}
+  .frame:hover .hint{opacity:1;background:rgba(0,0,0,.08);}
+  .card-body{padding:12px 14px 14px;}
+  .card-body .name{font-size:12.5px;font-weight:600;margin-bottom:8px;word-break:break-all;color:var(--slate);}
+  .slider-row{display:flex;align-items:center;gap:10px;}
+  .slider-row input[type=range]{flex:1;accent-color:var(--red);}
+  .slider-row .val{font-family:monospace;font-size:12px;width:34px;text-align:right;color:var(--ink);}
+  .reset{font-size:11px;color:var(--slate);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;margin-top:6px;}
+  .reset:hover{color:var(--red);}
+  .changed .frame{outline:2px solid var(--red);outline-offset:-2px;}
+  #loading{padding:60px;text-align:center;color:var(--slate);font-family:monospace;}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Editor de encuadre — Pablo Islas Portfolio</h1>
+    <p>Arrastra verticalmente sobre cada foto (o usa el control) para ajustar qué parte se ve dentro del recorte. Solo se mueve la posición vertical.</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <span id="status">cargando…</span>
+    <button id="save" disabled>Guardar cambios</button>
+  </div>
+</header>
+
+<main>
+  <div id="loading">Leyendo index.html y las subpáginas de proyecto…</div>
+  <div id="content" style="display:none;"></div>
+</main>
+
+<script>
+var PAGES = [
+  { path: '../index.html', label: 'Home — grid de trabajo' },
+  { path: '../work/golcam.html', label: 'Golcam' },
+  { path: '../work/weather-postcards.html', label: 'Weather Postcards' },
+  { path: '../work/pomodoro.html', label: 'Pomodoro' },
+  { path: '../work/sjrt-social.html', label: 'SJRT Broadcast Network' },
+  { path: '../work/cabrona.html', label: 'Cabrona' },
+  { path: '../work/katfish.html', label: 'Katfish' },
+  { path: '../work/ovvo.html', label: 'OvvO' },
+  { path: '../work/ai-generative.html', label: 'AI & Generative' },
+  { path: '../work/bike-punk-flyers.html', label: 'Bike Punk Flyers' }
+];
+
+var crops = {};       // key -> value currently applied (server truth + edits)
+var dirty = {};        // key -> true if changed since last save
+var els = {};          // key -> { img, range, val }
+
+function normalize(src) {
+  return src.replace(/^(\.\.\/)+/, '');
+}
+
+function setStatus() {
+  var n = Object.keys(dirty).length;
+  var status = document.getElementById('status');
+  var save = document.getElementById('save');
+  if (n === 0) {
+    status.textContent = 'sin cambios sin guardar';
+    status.className = '';
+    save.disabled = true;
+  } else {
+    status.textContent = n + ' foto(s) modificadas';
+    status.className = 'dirty';
+    save.disabled = false;
+  }
+}
+
+function applyValue(key, val) {
+  crops[key] = val;
+  if (els[key]) {
+    els[key].forEach(function (e) {
+      e.img.style.objectPosition = '50% ' + val + '%';
+      e.range.value = val;
+      e.val.textContent = val + '%';
+      e.card.classList.toggle('changed', val != (e.original));
+    });
+  }
+}
+
+function registerImage(container, img, key, wide) {
+  var original = crops[key] !== undefined ? crops[key] : 50;
+
+  var card = document.createElement('div');
+  card.className = 'card';
+
+  var frame = document.createElement('div');
+  frame.className = 'frame' + (wide ? ' wide' : '');
+  var im = document.createElement('img');
+  im.src = '../' + key;
+  im.style.objectPosition = '50% ' + original + '%';
+  var hint = document.createElement('div');
+  hint.className = 'hint';
+  hint.textContent = 'arrastra ↕';
+  frame.appendChild(im);
+  frame.appendChild(hint);
+
+  var body = document.createElement('div');
+  body.className = 'card-body';
+  var name = document.createElement('div');
+  name.className = 'name';
+  name.textContent = key.split('/').pop();
+  var row = document.createElement('div');
+  row.className = 'slider-row';
+  var range = document.createElement('input');
+  range.type = 'range'; range.min = 0; range.max = 100; range.value = original;
+  var val = document.createElement('span');
+  val.className = 'val';
+  val.textContent = original + '%';
+  row.appendChild(range); row.appendChild(val);
+  var reset = document.createElement('button');
+  reset.className = 'reset';
+  reset.textContent = 'restablecer centro (50%)';
+
+  body.appendChild(name); body.appendChild(row); body.appendChild(reset);
+  card.appendChild(frame); card.appendChild(body);
+
+  if (!els[key]) els[key] = [];
+  els[key].push({ img: im, range: range, val: val, card: card, original: original });
+
+  function onChange(v) {
+    v = Math.max(0, Math.min(100, Math.round(v)));
+    applyValue(key, v);
+    if (v === original) { delete dirty[key]; } else { dirty[key] = true; }
+    setStatus();
+  }
+
+  range.addEventListener('input', function () { onChange(+range.value); });
+  reset.addEventListener('click', function () { onChange(50); });
+
+  // drag directly on the photo
+  var dragging = false, startY = 0, startVal = original;
+  frame.addEventListener('mousedown', function (e) {
+    dragging = true; startY = e.clientY; startVal = +range.value;
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    var rect = frame.getBoundingClientRect();
+    var deltaPct = ((e.clientY - startY) / rect.height) * 100;
+    onChange(startVal + deltaPct);
+  });
+  window.addEventListener('mouseup', function () { dragging = false; });
+
+  return card;
+}
+
+function scanPage(html, groupEl) {
+  var doc = new DOMParser().parseFromString(html, 'text/html');
+  var imgs = doc.querySelectorAll('.thumb img, .cs-gal .item:not(.contain) img');
+  var count = 0;
+  imgs.forEach(function (img) {
+    var src = img.getAttribute('src');
+    if (!src) return;
+    var key = normalize(src);
+    var wide = img.closest('.item') && img.closest('.item').classList.contains('wide');
+    var grid = groupEl.querySelector('.grid');
+    grid.appendChild(registerImage(groupEl, img, key, wide));
+    count++;
+  });
+  return count;
+}
+
+Promise.all(PAGES.map(function (p) {
+  return fetch(p.path).then(function (r) { return r.text(); }).then(function (html) { return { p: p, html: html }; });
+}))
+.then(function (results) {
+  return fetch('../imas/crops.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })
+    .then(function (existing) {
+      crops = existing;
+      var content = document.getElementById('content');
+      results.forEach(function (r) {
+        var group = document.createElement('div');
+        group.className = 'page-group';
+        group.innerHTML = '<h2>' + r.p.label + '</h2><div class="grid"></div>';
+        var n = scanPage(r.html, group);
+        if (n > 0) content.appendChild(group);
+      });
+      document.getElementById('loading').style.display = 'none';
+      content.style.display = '';
+      setStatus();
+    });
+})
+.catch(function (err) {
+  document.getElementById('loading').textContent = 'Error cargando páginas: ' + err;
+});
+
+document.getElementById('save').addEventListener('click', function () {
+  var btn = this;
+  btn.disabled = true;
+  fetch('/api/save-crops', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(crops) })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function () {
+      dirty = {};
+      Object.keys(els).forEach(function (k) { els[k].forEach(function (e) { e.original = crops[k]; e.card.classList.remove('changed'); }); });
+      var status = document.getElementById('status');
+      status.textContent = 'guardado ✓ — imas/crops.json actualizado';
+      status.className = 'saved';
+      setTimeout(setStatus, 2500);
+    })
+    .catch(function (err) {
+      alert('No se pudo guardar: ' + err + '\n\n¿Está corriendo el servidor local con soporte de guardado?');
+      btn.disabled = false;
+    });
+});
+</script>
+</body>
+</html>
