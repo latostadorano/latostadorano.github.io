@@ -14,9 +14,9 @@
   #status{font-size:12.5px;color:var(--slate);font-family:"Consolas",monospace;}
   #status.dirty{color:var(--red);}
   #status.saved{color:var(--ok);}
-  #save{font:inherit;font-weight:600;background:var(--ink);color:var(--bg);border:none;padding:10px 20px;border-radius:4px;cursor:pointer;}
-  #save:disabled{opacity:.4;cursor:default;}
-  #save:hover:not(:disabled){background:var(--red);}
+  .btn{font:inherit;font-weight:600;background:var(--ink);color:var(--bg);border:none;padding:10px 20px;border-radius:4px;cursor:pointer;}
+  .btn:disabled{opacity:.4;cursor:default;}
+  .btn:hover:not(:disabled){background:var(--red);}
   main{max-width:1400px;margin:0 auto;padding:24px 28px;}
   .page-group{margin-bottom:36px;}
   .page-group h2{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px;}
@@ -35,7 +35,13 @@
   .reset{font-size:11px;color:var(--slate);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;margin-top:6px;}
   .reset:hover{color:var(--red);}
   .changed .frame{outline:2px solid var(--red);outline-offset:-2px;}
-  #loading{padding:60px;text-align:center;color:var(--slate);font-family:monospace;}
+  #panel{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--bg);padding:16px 28px;display:none;z-index:20;box-shadow:0 -4px 16px rgba(0,0,0,.25);}
+  #panel.open{display:block;}
+  #panel h3{margin:0 0 8px;font-size:13px;}
+  #panel textarea{width:100%;height:110px;font-family:Consolas,monospace;font-size:11.5px;background:#0000;color:var(--bg);border:1px solid #444;border-radius:4px;padding:10px;resize:vertical;}
+  #panel .actions{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap;}
+  #panel .close{background:none;border:1px solid #666;color:var(--bg);border-radius:4px;padding:8px 14px;cursor:pointer;font:inherit;}
+  #copyMsg{font-size:12px;color:#8FD6A8;}
 </style>
 </head>
 <body>
@@ -43,40 +49,115 @@
 <header>
   <div>
     <h1>Editor de encuadre — Pablo Islas Portfolio</h1>
-    <p>Arrastra verticalmente sobre cada foto (o usa el control) para ajustar qué parte se ve dentro del recorte. Solo se mueve la posición vertical.</p>
+    <p>Arrastra verticalmente sobre cada foto (o usa el control) para ajustar qué parte se ve dentro del recorte. Solo se mueve la posición vertical. No necesita servidor: se abre directo con doble clic.</p>
   </div>
   <div style="display:flex;align-items:center;gap:14px;">
-    <span id="status">cargando…</span>
-    <button id="save" disabled>Guardar cambios</button>
+    <span id="status">sin cambios sin guardar</span>
+    <button id="save" class="btn" disabled>Obtener valores</button>
   </div>
 </header>
 
 <main>
-  <div id="loading">Leyendo index.html y las subpáginas de proyecto…</div>
-  <div id="content" style="display:none;"></div>
+  <div id="content"></div>
 </main>
 
+<div id="panel">
+  <h3>Valores actuales (crops.json)</h3>
+  <textarea id="jsonOut" readonly></textarea>
+  <div class="actions">
+    <button id="download" class="btn">Descargar crops.json</button>
+    <button id="copy" class="btn">Copiar al portapapeles</button>
+    <span id="copyMsg"></span>
+    <button id="closePanel" class="close">Cerrar</button>
+  </div>
+</div>
+
 <script>
-var PAGES = [
-  { path: '../index.html', label: 'Home — grid de trabajo' },
-  { path: '../work/golcam.html', label: 'Golcam' },
-  { path: '../work/weather-postcards.html', label: 'Weather Postcards' },
-  { path: '../work/pomodoro.html', label: 'Pomodoro' },
-  { path: '../work/sjrt-social.html', label: 'SJRT Broadcast Network' },
-  { path: '../work/cabrona.html', label: 'Cabrona' },
-  { path: '../work/katfish.html', label: 'Katfish' },
-  { path: '../work/ovvo.html', label: 'OvvO' },
-  { path: '../work/ai-generative.html', label: 'AI & Generative' },
-  { path: '../work/bike-punk-flyers.html', label: 'Bike Punk Flyers' }
+// Imagen -> grupo (página) al que pertenece, en el orden actual del book.
+// wide:true = la imagen se muestra en un recuadro ancho (21:9) en esa página.
+var GROUPS = [
+  { label: 'Home — grid de trabajo', items: [
+    { key: 'imas/cursos_verano/portada.png', wide: false },
+    { key: 'imas/cabrona/cabrona_aretes.png', wide: false },
+    { key: 'imas/pomodorer/state_1.png', wide: false },
+    { key: 'behance_download/Music-video-for-Katfish/1.png', wide: false },
+    { key: 'imas/OvvO/ovvo_gifs/1.gif', wide: false },
+    { key: 'imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png', wide: false },
+    { key: 'behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg', wide: false },
+    { key: 'imas/golcam/golcam_scoreboard_live.png', wide: false },
+    { key: 'behance_download/Bike-Punks-flyers/1.png', wide: false }
+  ]},
+  { label: 'SJRT Broadcast Network', items: [
+    { key: 'imas/postales/postal_leonora.png', wide: false },
+    { key: 'imas/postales/postal_taco.png', wide: false },
+    { key: 'imas/postales/postal_artesano.png', wide: false },
+    { key: 'imas/postales/postal_bailarines_2.png', wide: false },
+    { key: 'imas/postales/postal_bosques.png', wide: false },
+    { key: 'imas/postales/postal_zuno.png', wide: false },
+    { key: 'imas/cursos_verano/portada.png', wide: true },
+    { key: 'imas/cursos_verano/cursosVerano_vertical_1.png', wide: false },
+    { key: 'imas/cursos_verano/cursosVerano_vertical_2.png', wide: false }
+  ]},
+  { label: 'Cabrona', items: [
+    { key: 'imas/cabrona/cabrona_aretes.png', wide: false },
+    { key: 'imas/cabrona/cabrona_aretes_2.png', wide: false }
+  ]},
+  { label: 'Pomodoro', items: [
+    { key: 'imas/pomodorer/state_1.png', wide: false },
+    { key: 'imas/pomodorer/1_timer.png', wide: false },
+    { key: 'imas/pomodorer/2_timers.png', wide: false },
+    { key: 'imas/pomodorer/vertical_mode.png', wide: false }
+  ]},
+  { label: 'Katfish — Music Video', items: [
+    { key: 'behance_download/Music-video-for-Katfish/1.png', wide: false },
+    { key: 'behance_download/Music-video-for-Katfish/2.png', wide: false },
+    { key: 'behance_download/Music-video-for-Katfish/3.png', wide: false },
+    { key: 'behance_download/Music-video-for-Katfish/4.png', wide: true }
+  ]},
+  { label: 'OvvO', items: [
+    { key: 'imas/OvvO/ovvo_gifs/1.gif', wide: false },
+    { key: 'imas/OvvO/ovvo_gifs/2.gif', wide: false },
+    { key: 'imas/OvvO/ovvo_gifs/2_1.gif', wide: false },
+    { key: 'imas/OvvO/ovvo_gifs/3.gif', wide: false },
+    { key: 'imas/OvvO/ovvo_gifs/5.gif', wide: false },
+    { key: 'imas/OvvO/ovvo_gifs/6.gif', wide: false }
+  ]},
+  { label: 'AI & Generative', items: [
+    { key: 'imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png', wide: false },
+    { key: 'imas/ai/0_asdf1.jpg', wide: false },
+    { key: 'imas/ai/ai_ovvos/1%202.png', wide: false }
+  ]},
+  { label: 'Weather Postcards', items: [
+    { key: 'behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg', wide: false },
+    { key: 'behance_download/Generative-Forecasts/2f23bb235249179.68d38124d37b3.jpg', wide: false },
+    { key: 'behance_download/Generative-Forecasts/59b0ca235249179.68d38124d3ece.png', wide: false },
+    { key: 'behance_download/Generative-Forecasts/d3a781235249179.68d381240c04c.png', wide: false },
+    { key: 'behance_download/Generative-Forecasts/de2c2d235249179.68d381240c8a4.png', wide: true },
+    { key: 'imas/postales/postal_dormir.png', wide: false },
+    { key: 'imas/postales/postal_ventanaUniverso.png', wide: false }
+  ]},
+  { label: 'Golcam', items: [
+    { key: 'imas/golcam/golcam_scoreboard_live.png', wide: false },
+    { key: 'imas/golcam/golcam_scoreboard_start.png', wide: false },
+    { key: 'imas/golcam/golcam_goal_overlay.png', wide: false },
+    { key: 'imas/golcam/golcam_summary.png', wide: false },
+    { key: 'imas/golcam/golcam_cover.png', wide: true }
+  ]},
+  { label: 'Bike Punk Flyers', items: [
+    { key: 'behance_download/Bike-Punks-flyers/1.png', wide: false },
+    { key: 'behance_download/Bike-Punks-flyers/2.png', wide: false },
+    { key: 'behance_download/Bike-Punks-flyers/3.png', wide: false },
+    { key: 'behance_download/Bike-Punks-flyers/4.png', wide: false },
+    { key: 'behance_download/Bike-Punks-flyers/5.png', wide: true }
+  ]}
 ];
 
-var crops = {};       // key -> value currently applied (server truth + edits)
-var dirty = {};        // key -> true if changed since last save
-var els = {};          // key -> { img, range, val }
+// Valores guardados actualmente en imas/crops.json (punto de partida).
+var crops = {"imas/golcam/golcam_scoreboard_live.png":51,"imas/cursos_verano/portada.png":52,"behance_download/Music-video-for-Katfish/1.png":13,"imas/cabrona/cabrona_aretes.png":47,"imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png":5,"behance_download/Bike-Punks-flyers/1.png":16,"imas/golcam/golcam_scoreboard_start.png":50,"imas/golcam/golcam_goal_overlay.png":72,"imas/golcam/golcam_summary.png":55,"imas/golcam/golcam_cover.png":43,"behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg":100,"behance_download/Generative-Forecasts/2f23bb235249179.68d38124d37b3.jpg":100,"behance_download/Generative-Forecasts/59b0ca235249179.68d38124d3ece.png":100,"behance_download/Generative-Forecasts/d3a781235249179.68d381240c04c.png":100,"behance_download/Generative-Forecasts/de2c2d235249179.68d381240c8a4.png":88,"imas/postales/postal_dormir.png":18,"imas/postales/postal_ventanaUniverso.png":23,"imas/postales/postal_leonora.png":12,"imas/postales/postal_taco.png":6,"imas/postales/postal_artesano.png":100,"imas/postales/postal_bailarines_2.png":13,"imas/postales/postal_bosques.png":100,"imas/postales/postal_zuno.png":15,"imas/cursos_verano/cursosVerano_vertical_1.png":96,"imas/cursos_verano/cursosVerano_vertical_2.png":94,"imas/cabrona/cabrona_aretes_2.png":91,"behance_download/Music-video-for-Katfish/2.png":33,"behance_download/Music-video-for-Katfish/3.png":35,"behance_download/Music-video-for-Katfish/4.png":30,"imas/ai/0_asdf1.jpg":39,"imas/ai/ai_ovvos/1%202.png":17,"behance_download/Bike-Punks-flyers/2.png":16,"behance_download/Bike-Punks-flyers/3.png":16,"behance_download/Bike-Punks-flyers/4.png":17,"behance_download/Bike-Punks-flyers/5.png":12};
 
-function normalize(src) {
-  return src.replace(/^(\.\.\/)+/, '');
-}
+var initial = {};       // key -> value when the page loaded (to detect changes)
+var dirty = {};         // key -> true if changed since load
+var els = {};           // key -> [{ img, range, val, card }]
 
 function setStatus() {
   var n = Object.keys(dirty).length;
@@ -95,18 +176,17 @@ function setStatus() {
 
 function applyValue(key, val) {
   crops[key] = val;
-  if (els[key]) {
-    els[key].forEach(function (e) {
-      e.img.style.objectPosition = '50% ' + val + '%';
-      e.range.value = val;
-      e.val.textContent = val + '%';
-      e.card.classList.toggle('changed', val != (e.original));
-    });
-  }
+  (els[key] || []).forEach(function (e) {
+    e.img.style.objectPosition = '50% ' + val + '%';
+    e.range.value = val;
+    e.val.textContent = val + '%';
+    e.card.classList.toggle('changed', val != initial[key]);
+  });
 }
 
-function registerImage(container, img, key, wide) {
-  var original = crops[key] !== undefined ? crops[key] : 50;
+function registerImage(grid, key, wide) {
+  var current = crops[key] !== undefined ? crops[key] : 50;
+  if (initial[key] === undefined) initial[key] = current;
 
   var card = document.createElement('div');
   card.className = 'card';
@@ -115,7 +195,7 @@ function registerImage(container, img, key, wide) {
   frame.className = 'frame' + (wide ? ' wide' : '');
   var im = document.createElement('img');
   im.src = '../' + key;
-  im.style.objectPosition = '50% ' + original + '%';
+  im.style.objectPosition = '50% ' + current + '%';
   var hint = document.createElement('div');
   hint.className = 'hint';
   hint.textContent = 'arrastra ↕';
@@ -130,10 +210,10 @@ function registerImage(container, img, key, wide) {
   var row = document.createElement('div');
   row.className = 'slider-row';
   var range = document.createElement('input');
-  range.type = 'range'; range.min = 0; range.max = 100; range.value = original;
+  range.type = 'range'; range.min = 0; range.max = 100; range.value = current;
   var val = document.createElement('span');
   val.className = 'val';
-  val.textContent = original + '%';
+  val.textContent = current + '%';
   row.appendChild(range); row.appendChild(val);
   var reset = document.createElement('button');
   reset.className = 'reset';
@@ -141,22 +221,22 @@ function registerImage(container, img, key, wide) {
 
   body.appendChild(name); body.appendChild(row); body.appendChild(reset);
   card.appendChild(frame); card.appendChild(body);
+  grid.appendChild(card);
 
   if (!els[key]) els[key] = [];
-  els[key].push({ img: im, range: range, val: val, card: card, original: original });
+  els[key].push({ img: im, range: range, val: val, card: card });
 
   function onChange(v) {
     v = Math.max(0, Math.min(100, Math.round(v)));
     applyValue(key, v);
-    if (v === original) { delete dirty[key]; } else { dirty[key] = true; }
+    if (v === initial[key]) { delete dirty[key]; } else { dirty[key] = true; }
     setStatus();
   }
 
   range.addEventListener('input', function () { onChange(+range.value); });
   reset.addEventListener('click', function () { onChange(50); });
 
-  // drag directly on the photo
-  var dragging = false, startY = 0, startVal = original;
+  var dragging = false, startY = 0, startVal = current;
   frame.addEventListener('mousedown', function (e) {
     dragging = true; startY = e.clientY; startVal = +range.value;
     e.preventDefault();
@@ -168,67 +248,50 @@ function registerImage(container, img, key, wide) {
     onChange(startVal + deltaPct);
   });
   window.addEventListener('mouseup', function () { dragging = false; });
-
-  return card;
 }
 
-function scanPage(html, groupEl) {
-  var doc = new DOMParser().parseFromString(html, 'text/html');
-  var imgs = doc.querySelectorAll('.thumb img, .cs-gal .item:not(.contain) img');
-  var count = 0;
-  imgs.forEach(function (img) {
-    var src = img.getAttribute('src');
-    if (!src) return;
-    var key = normalize(src);
-    var wide = img.closest('.item') && img.closest('.item').classList.contains('wide');
-    var grid = groupEl.querySelector('.grid');
-    grid.appendChild(registerImage(groupEl, img, key, wide));
-    count++;
-  });
-  return count;
+var content = document.getElementById('content');
+GROUPS.forEach(function (g) {
+  var group = document.createElement('div');
+  group.className = 'page-group';
+  group.innerHTML = '<h2>' + g.label + '</h2><div class="grid"></div>';
+  var grid = group.querySelector('.grid');
+  g.items.forEach(function (it) { registerImage(grid, it.key, it.wide); });
+  content.appendChild(group);
+});
+setStatus();
+
+function showPanel() {
+  var out = {};
+  Object.keys(crops).sort().forEach(function (k) { out[k] = crops[k]; });
+  document.getElementById('jsonOut').value = JSON.stringify(out);
+  document.getElementById('panel').classList.add('open');
+  document.getElementById('copyMsg').textContent = '';
 }
 
-Promise.all(PAGES.map(function (p) {
-  return fetch(p.path).then(function (r) { return r.text(); }).then(function (html) { return { p: p, html: html }; });
-}))
-.then(function (results) {
-  return fetch('../imas/crops.json').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })
-    .then(function (existing) {
-      crops = existing;
-      var content = document.getElementById('content');
-      results.forEach(function (r) {
-        var group = document.createElement('div');
-        group.className = 'page-group';
-        group.innerHTML = '<h2>' + r.p.label + '</h2><div class="grid"></div>';
-        var n = scanPage(r.html, group);
-        if (n > 0) content.appendChild(group);
-      });
-      document.getElementById('loading').style.display = 'none';
-      content.style.display = '';
-      setStatus();
-    });
-})
-.catch(function (err) {
-  document.getElementById('loading').textContent = 'Error cargando páginas: ' + err;
+document.getElementById('save').addEventListener('click', showPanel);
+document.getElementById('closePanel').addEventListener('click', function () {
+  document.getElementById('panel').classList.remove('open');
 });
 
-document.getElementById('save').addEventListener('click', function () {
-  var btn = this;
-  btn.disabled = true;
-  fetch('/api/save-crops', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(crops) })
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(function () {
-      dirty = {};
-      Object.keys(els).forEach(function (k) { els[k].forEach(function (e) { e.original = crops[k]; e.card.classList.remove('changed'); }); });
-      var status = document.getElementById('status');
-      status.textContent = 'guardado ✓ — imas/crops.json actualizado';
-      status.className = 'saved';
-      setTimeout(setStatus, 2500);
-    })
-    .catch(function (err) {
-      alert('No se pudo guardar: ' + err + '\n\n¿Está corriendo el servidor local con soporte de guardado?');
-      btn.disabled = false;
-    });
+document.getElementById('download').addEventListener('click', function () {
+  var blob = new Blob([document.getElementById('jsonOut').value], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'crops.json';
+  a.click();
+});
+
+document.getElementById('copy').addEventListener('click', function () {
+  var ta = document.getElementById('jsonOut');
+  ta.select();
+  var msg = document.getElementById('copyMsg');
+  navigator.clipboard.writeText(ta.value).then(function () {
+    msg.textContent = 'copiado ✓';
+  }).catch(function () {
+    document.execCommand('copy');
+    msg.textContent = 'copiado ✓ (respaldo)';
+  });
 });
 </script>
 </body>
