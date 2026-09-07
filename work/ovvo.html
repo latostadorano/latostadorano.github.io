@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OvvO, Pablo Islas</title>
-<meta name="description" content="A series of generative GIFs built with p5.js for an automated Twitter bot.">
+<meta name="description" content="A generative visual identity built with p5.js and connected to an automated Twitter bot, producing new artwork without manual curation." data-content-en="A generative visual identity built with p5.js and connected to an automated Twitter bot, producing new artwork without manual curation." data-content-es="Una identidad visual generativa construida con p5.js y conectada a un bot automatizado de Twitter, que produce nuevas piezas sin curaduría manual.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -13,59 +13,69 @@
 <body>
 
 <header class="masthead"><div class="wrap masthead-in">
-  <a href="../index.html" class="brand">Pablo Islas <span class="no">/ creative</span></a>
+  <a href="../index.html" class="brand">Pablo Islas <span class="no" data-en="/ creative" data-es="/ creativo">/ creative</span></a>
   <nav class="mnav">
-    <a href="../index.html#work">Work</a>
-    <a href="../index.html#about">About</a>
-    <a href="../index.html#experience">Experience</a>
+    <div class="lang-switch"><button class="lang-btn active" data-lang="en">EN</button><span class="sep">/</span><button class="lang-btn" data-lang="es">ES</button></div>
+    <a href="../index.html#work" data-en="Work" data-es="Trabajo">Work</a>
+    <a href="../index.html#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="../index.html#experience" data-en="Experience" data-es="Experiencia">Experience</a>
     <a href="../cvs/pabloIslas_CV_2026.pdf" target="_blank">↓ CV</a>
-    <a class="cta" href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
   </nav>
 </div></header>
 
 <main>
   <div class="wrap">
-    <div class="cs-top"><a class="cs-back mono" href="../index.html#work">← Back to work</a></div>
+    <div class="cs-top"><a class="cs-back mono" href="../index.html#work" data-en="← Back to work" data-es="← Volver al trabajo">← Back to work</a></div>
 
     <div class="cs-layout">
       <aside class="cs-side">
         <h1>Ov<span class="r">vO</span></h1>
-        <p class="dek">Generative GIFs built with p5.js for an automated Twitter bot.</p>
-        <div class="meta-row"><span>Role</span><span>Visual Identity &amp; Motion</span></div>
-        <div class="meta-row"><span>Client</span><span>Personal / @ovvo_bot</span></div>
-        <div class="meta-row"><span>Year</span><span>2024</span></div>
+        <p class="dek" data-en="A generative visual identity built with p5.js, connected to an automated posting system." data-es="Identidad visual generativa construida con p5.js, conectada a un sistema de publicación automatizado.">A generative visual identity built with p5.js, connected to an automated posting system.</p>
+        <div class="meta-row"><span data-en="Role" data-es="Rol">Role</span><span data-en="Visual Identity &amp; Motion" data-es="Identidad Visual y Motion">Visual Identity &amp; Motion</span></div>
+        <div class="meta-row"><span data-en="Client" data-es="Cliente">Client</span><span>Personal / @ovvo_bot</span></div>
+        <div class="meta-row"><span data-en="Year" data-es="Año">Year</span><span>2024</span></div>
       </aside>
 
       <div class="cs-main">
-        <p>OvvO started as a question: what happens when a visual identity isn't a fixed logo but a living system that generates its own variations, forever? I built a series of generative GIFs in p5.js and connected them to @ovvo_bot, a Twitter bot that posted new generative art automatically, no manual curation, no repeat.</p>
-        <p>Each piece is a small closed system: a set of rules, a palette, and enough randomness that no two outputs are quite the same. It's an ongoing collection, and the earliest sketch that eventually pointed me toward the automation work I do today: the moment design stopped being only about the final frame and started being about the system that produces the frame.</p>
+        <p data-en="OvvO is a generative visual identity built in p5.js: a defined set of rules, a fixed palette and controlled randomness generating a continuous series of unique animated outputs rather than a single static logo. I connected the system to @ovvo_bot, an automated Twitter bot that posted new generative artwork without manual curation or repetition." data-es="OvvO es una identidad visual generativa construida en p5.js: un conjunto definido de reglas, una paleta fija y aleatoriedad controlada que genera una serie continua de piezas animadas únicas, en lugar de un logo estático único. Conecté el sistema a @ovvo_bot, un bot automatizado de Twitter que publicaba nuevas piezas generativas sin curaduría manual ni repetición.">OvvO is a generative visual identity built in p5.js: a defined set of rules, a fixed palette and controlled randomness generating a continuous series of unique animated outputs rather than a single static logo. I connected the system to @ovvo_bot, an automated Twitter bot that posted new generative artwork without manual curation or repetition.</p>
+        <p data-en="The project applied creative coding to brand identity design, treating the visual system as a set of generative rules rather than a fixed asset. It was an early exercise in the automation-driven design work I continue to build today, connecting design systems directly to the code that produces and distributes them." data-es="El proyecto aplicó programación creativa al diseño de identidad de marca, tratando el sistema visual como un conjunto de reglas generativas en lugar de un activo fijo. Fue un ejercicio temprano del trabajo de diseño impulsado por automatización que sigo construyendo hoy, conectando sistemas de diseño directamente con el código que los produce y distribuye.">The project applied creative coding to brand identity design, treating the visual system as a set of generative rules rather than a fixed asset. It was an early exercise in the automation-driven design work I continue to build today, connecting design systems directly to the code that produces and distributes them.</p>
 
         <div class="cs-gal">
+          <div class="item wide"><div class="p5wrap"><iframe src="https://editor.p5js.org/latostadorano@gmail.com/full/MMH58dODq" title="OvvO interactive sketch, zoom on click" loading="lazy" scrolling="no" style="top:-70px;height:calc(100% + 70px);"></iframe></div><div class="cap" data-en="Interactive sketch: click to refresh the OvvO" data-es="Sketch interactivo: haz clic para refrescar el OvvO">Interactive sketch: click to refresh the OvvO</div></div>
+          <div class="item wide"><div class="p5wrap"><iframe src="https://editor.p5js.org/latostadorano@gmail.com/full/VCQqZAT78" title="Ambient p5 sketch, after Brian Eno's Light Boxes" loading="lazy" scrolling="no"></iframe></div><div class="cap" data-en-html="Ambient study, after Brian Eno's &lt;a href=&quot;https://www.paulstolper.com/artists/56-brian-eno/works/73-light-boxes/&quot; target=&quot;_blank&quot; style=&quot;color:var(--red);text-decoration:none;&quot;&gt;Light Boxes&lt;/a&gt;" data-es-html="Estudio ambiental, inspirado en &lt;a href=&quot;https://www.paulstolper.com/artists/56-brian-eno/works/73-light-boxes/&quot; target=&quot;_blank&quot; style=&quot;color:var(--red);text-decoration:none;&quot;&gt;Light Boxes&lt;/a&gt; de Brian Eno">Ambient study, after Brian Eno's <a href="https://www.paulstolper.com/artists/56-brian-eno/works/73-light-boxes/" target="_blank" style="color:var(--red);text-decoration:none;">Light Boxes</a></div></div>
           <div class="row">
-            <div class="item"><img src="../imas/OvvO/ovvo_gifs/1.gif" alt="OvvO animation 01"><div class="cap">Animation 01</div></div>
-            <div class="item"><img src="../imas/OvvO/ovvo_gifs/2.gif" alt="OvvO animation 02"><div class="cap">Animation 02</div></div>
+            <div class="item"><img src="../imas/OvvO/ovvo_gifs/1.gif" alt="OvvO animation 01"><div class="cap" data-en="Animation 01" data-es="Animación 01">Animation 01</div></div>
+            <div class="item"><img src="../imas/OvvO/ovvo_gifs/2.gif" alt="OvvO animation 02"><div class="cap" data-en="Animation 02" data-es="Animación 02">Animation 02</div></div>
           </div>
           <div class="row">
-            <div class="item"><img src="../imas/OvvO/ovvo_gifs/2_1.gif" alt="OvvO animation 03"><div class="cap">Animation 03</div></div>
-            <div class="item"><img src="../imas/OvvO/ovvo_gifs/3.gif" alt="OvvO animation 04"><div class="cap">Animation 04</div></div>
+            <div class="item"><img src="../imas/OvvO/ovvo_gifs/2_1.gif" alt="OvvO animation 03"><div class="cap" data-en="Animation 03" data-es="Animación 03">Animation 03</div></div>
+            <div class="item"><img src="../imas/OvvO/ovvo_gifs/3.gif" alt="OvvO animation 04"><div class="cap" data-en="Animation 04" data-es="Animación 04">Animation 04</div></div>
           </div>
           <div class="row">
-            <div class="item"><img src="../imas/OvvO/ovvo_gifs/5.gif" alt="OvvO animation 05"><div class="cap">Animation 05</div></div>
-            <div class="item"><img src="../imas/OvvO/ovvo_gifs/6.gif" alt="OvvO animation 06"><div class="cap">Animation 06</div></div>
+            <div class="item"><img src="../imas/OvvO/ovvo_gifs/5.gif" alt="OvvO animation 05"><div class="cap" data-en="Animation 05" data-es="Animación 05">Animation 05</div></div>
+            <div class="item"><img src="../imas/OvvO/ovvo_gifs/6.gif" alt="OvvO animation 06"><div class="cap" data-en="Animation 06" data-es="Animación 06">Animation 06</div></div>
           </div>
+          <div class="row">
+            <div class="item"><img src="../imas/OvvO/QmRfgE5PqjKN9VQniN2S6CfesGjjvm4USjqzTQd1ECoiuM.gif" alt="OvvO wordmark, animated"><div class="cap" data-en="Logo mark, animated" data-es="Isotipo animado">Logo mark, animated</div></div>
+            <div class="item"><img src="../imas/OvvO/Qmcc7K4Hk27Nm3i5GkveaFPMkmWBmJS4nqTfMuaz2ksyvT.gif" alt="OvvO glitch face mascot, animated"><div class="cap" data-en="Brand mascot: glitch face, animated" data-es="Mascota de marca: rostro glitch, animado">Brand mascot: glitch face, animated</div></div>
+          </div>
+          <div class="item wide contain"><img src="../imas/OvvO/QmSsi3t9e7goPtHdyrv52uZQ9tSz6bYMUFkz3zar7Uaxd8.png" alt="OvvO VV mascot riding a bicycle"><div class="cap" data-en="Brand mascot: VV, character illustration" data-es="Mascota de marca: VV, ilustración de personaje">Brand mascot: VV, character illustration</div></div>
+          <div class="item wide sq"><div class="p5wrap"><iframe src="https://editor.p5js.org/latostadorano@gmail.com/full/3KCAlBxyg" title="OvvO interactive sketch, shift on click" loading="lazy" scrolling="no"></iframe></div><div class="cap" data-en="Interactive sketch: click to shift the OvvO mark" data-es="Sketch interactivo: haz clic para transformar el isotipo OvvO">Interactive sketch: click to shift the OvvO mark</div></div>
         </div>
       </div>
     </div>
 
     <div class="cs-next">
-      <div><span class="cs-next-label">Next project</span><a href="ai-generative.html">AI &amp; Generative →</a></div>
-      <a href="../index.html#work">All work</a>
+      <div><span class="cs-next-label" data-en="Next project" data-es="Siguiente proyecto">Next project</span><a href="ai-generative.html">AI &amp; Generative →</a></div>
+      <a href="../index.html#work" data-en="All work" data-es="Todo el trabajo">All work</a>
     </div>
   </div>
 </main>
 
-<footer class="wrap"><span>Pablo Islas © 2026</span><span>Creative &amp; Digital Designer · GDL, MX</span></footer>
+<footer class="wrap"><span>Pablo Islas © 2026</span><span data-en="Creative &amp; Digital Designer · GDL, MX" data-es="Diseñador Creativo y Digital · GDL, MX">Creative &amp; Digital Designer · GDL, MX</span></footer>
 
 <script src="../crops.js"></script>
+<script src="../i18n.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pomodoro, Pablo Islas</title>
-<meta name="description" content="A gentle multi-timer focus app, built as a web app and a native macOS app.">
+<meta name="description" content="A multi-timer focus app designed and built end to end, shipped as a web app." data-content-en="A multi-timer focus app designed and built end to end, shipped as a web app." data-content-es="Una aplicación de enfoque con múltiples temporizadores, diseñada y construida de principio a fin, lanzada como app web.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -13,61 +13,62 @@
 <body>
 
 <header class="masthead"><div class="wrap masthead-in">
-  <a href="../index.html" class="brand">Pablo Islas <span class="no">/ creative</span></a>
+  <a href="../index.html" class="brand">Pablo Islas <span class="no" data-en="/ creative" data-es="/ creativo">/ creative</span></a>
   <nav class="mnav">
-    <a href="../index.html#work">Work</a>
-    <a href="../index.html#about">About</a>
-    <a href="../index.html#experience">Experience</a>
+    <div class="lang-switch"><button class="lang-btn active" data-lang="en">EN</button><span class="sep">/</span><button class="lang-btn" data-lang="es">ES</button></div>
+    <a href="../index.html#work" data-en="Work" data-es="Trabajo">Work</a>
+    <a href="../index.html#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="../index.html#experience" data-en="Experience" data-es="Experiencia">Experience</a>
     <a href="../cvs/pabloIslas_CV_2026.pdf" target="_blank">↓ CV</a>
-    <a class="cta" href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
   </nav>
 </div></header>
 
 <main>
   <div class="wrap">
-    <div class="cs-top"><a class="cs-back mono" href="../index.html#work">← Back to work</a></div>
+    <div class="cs-top"><a class="cs-back mono" href="../index.html#work" data-en="← Back to work" data-es="← Volver al trabajo">← Back to work</a></div>
 
     <div class="cs-layout">
       <aside class="cs-side">
         <h1>Pomo<span class="r">doro</span></h1>
-        <p class="dek">A gentle multi-timer for people who lose track of time.</p>
-        <div class="meta-row"><span>Role</span><span>Product Design &amp; Build</span></div>
-        <div class="meta-row"><span>Status</span><span>Live · web &amp; macOS</span></div>
-        <div class="meta-row"><span>Client</span><span>Personal product</span></div>
-        <div class="meta-row"><span>Stack</span><span>Web app · Electron (macOS)</span></div>
+        <p class="dek" data-en="A multi-timer focus application designed and built end to end, shipped as a web app." data-es="Una aplicación de enfoque con múltiples temporizadores, diseñada y construida de principio a fin, lanzada como app web.">A multi-timer focus application designed and built end to end, shipped as a web app.</p>
+        <div class="meta-row"><span data-en="Role" data-es="Rol">Role</span><span data-en="Product Design &amp; Build" data-es="Diseño y Construcción de Producto">Product Design &amp; Build</span></div>
+        <div class="meta-row"><span data-en="Status" data-es="Estado">Status</span><span data-en="Live · web" data-es="En vivo · web">Live · web</span></div>
+        <div class="meta-row"><span data-en="Client" data-es="Cliente">Client</span><span data-en="Personal product" data-es="Producto personal">Personal product</span></div>
+        <div class="meta-row"><span data-en="Stack" data-es="Stack">Stack</span><span data-en="Web app" data-es="App web">Web app</span></div>
         <div class="cs-links">
-          <a href="https://latostadorano.github.io/pomodorer/pomodorer_web/" target="_blank">→ Open the web app</a>
-          <a href="https://github.com/latostadorano/pomodorer/raw/main/pomodorer_mac/Pomodorer-1.0.0-arm64.dmg" target="_blank">→ Download for Mac (.dmg)</a>
+          <a href="https://latostadorano.github.io/pomodorer/pomodorer_web/" target="_blank" data-en="→ Open the web app" data-es="→ Abre la app web">→ Open the web app</a>
         </div>
       </aside>
 
       <div class="cs-main">
-        <p>There's a version of you that knows exactly what time it is. You're probably not that version right now, and that's fine, it's the whole reason this exists. Pomodoro sits on your screen and watches the time so you don't have to, while you go somewhere inside a problem, a drawing or a sentence that isn't working yet.</p>
-        <p>It counts. It glows a little. You can run more than one timer at once, if you're the kind of person who's doing more than one thing at once, which you probably are. Each timer gets its own color and its own rhythm. There's a compact mode that collapses everything into a thin strip of light at the edge of the screen: you barely see it, but you know it's there, and that's enough.</p>
-        <p>I designed and built it end to end, then shipped it twice: as a browser app with nothing to install, and as a native macOS app packaged with Electron for people who want it living permanently in their dock. Same product, same interaction model, two very different distribution problems to solve.</p>
+        <p data-en="Pomodoro is a focus-timer application designed and built end to end, from interaction model through visual design and front-end implementation. It supports multiple simultaneous timers, each assigned its own color and rhythm, along with a compact mode that collapses the interface into a minimal strip of light for continuous background use." data-es="Pomodoro es una aplicación de temporizador de enfoque diseñada y construida de principio a fin, desde el modelo de interacción hasta el diseño visual y la implementación front-end. Soporta múltiples temporizadores simultáneos, cada uno con su propio color y ritmo, además de un modo compacto que reduce la interfaz a una franja mínima de luz para uso continuo en segundo plano.">Pomodoro is a focus-timer application designed and built end to end, from interaction model through visual design and front-end implementation. It supports multiple simultaneous timers, each assigned its own color and rhythm, along with a compact mode that collapses the interface into a minimal strip of light for continuous background use.</p>
+        <p data-en="I designed and built the product as a browser-based web app with no installation required, handling interaction model, visual design and front-end implementation myself." data-es="Diseñé y construí el producto como una app web sin necesidad de instalación, encargándome yo mismo del modelo de interacción, el diseño visual y la implementación front-end.">I designed and built the product as a browser-based web app with no installation required, handling interaction model, visual design and front-end implementation myself.</p>
+        <p data-en="The project served as a practical exercise in shipping a complete product solo, deepening front-end skills in state management, timer logic and UI consistency." data-es="El proyecto sirvió como ejercicio práctico de lanzar un producto completo en solitario, profundizando habilidades de front-end en gestión de estado, lógica de temporizadores y consistencia de UI.">The project served as a practical exercise in shipping a complete product solo, deepening front-end skills in state management, timer logic and UI consistency.</p>
 
         <div class="cs-gal">
           <div class="row">
-            <div class="item contain"><img src="../imas/pomodorer/state_1.png" alt="Pomodoro home screen"><div class="cap">Home screen: set a focus and a rest interval, press start</div></div>
-            <div class="item contain"><img src="../imas/pomodorer/1_timer.png" alt="Single timer running"><div class="cap">A single session running</div></div>
+            <div class="item contain"><img src="../imas/pomodorer/state_1.png" alt="Pomodoro home screen"><div class="cap" data-en="Home screen: set a focus and a rest interval, press start" data-es="Pantalla de inicio: define un intervalo de enfoque y descanso, presiona iniciar">Home screen: set a focus and a rest interval, press start</div></div>
+            <div class="item contain"><img src="../imas/pomodorer/1_timer.png" alt="Single timer running"><div class="cap" data-en="A single session running" data-es="Una sola sesión en curso">A single session running</div></div>
           </div>
           <div class="row">
-            <div class="item contain"><img src="../imas/pomodorer/2_timers.png" alt="Two timers running at once"><div class="cap">Multiple sessions at once, each with its own color</div></div>
-            <div class="item contain"><img src="../imas/pomodorer/vertical_mode.png" alt="Vertical strip mode"><div class="cap">Compact mode: a strip of light at the edge of the screen</div></div>
+            <div class="item contain"><img src="../imas/pomodorer/2_timers.png" alt="Two timers running at once"><div class="cap" data-en="Multiple sessions at once, each with its own color" data-es="Varias sesiones a la vez, cada una con su propio color">Multiple sessions at once, each with its own color</div></div>
+            <div class="item contain"><img src="../imas/pomodorer/vertical_mode.png" alt="Vertical strip mode"><div class="cap" data-en="Compact mode: a strip of light at the edge of the screen" data-es="Modo compacto: una franja de luz en el borde de la pantalla">Compact mode: a strip of light at the edge of the screen</div></div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="cs-next">
-      <div><span class="cs-next-label">Next project</span><a href="katfish.html">Katfish: Music Video →</a></div>
-      <a href="../index.html#work">All work</a>
+      <div><span class="cs-next-label" data-en="Next project" data-es="Siguiente proyecto">Next project</span><a href="katfish.html">Katfish: Music Video →</a></div>
+      <a href="../index.html#work" data-en="All work" data-es="Todo el trabajo">All work</a>
     </div>
   </div>
 </main>
 
-<footer class="wrap"><span>Pablo Islas © 2026</span><span>Creative &amp; Digital Designer · GDL, MX</span></footer>
+<footer class="wrap"><span>Pablo Islas © 2026</span><span data-en="Creative &amp; Digital Designer · GDL, MX" data-es="Diseñador Creativo y Digital · GDL, MX">Creative &amp; Digital Designer · GDL, MX</span></footer>
 
 <script src="../crops.js"></script>
+<script src="../i18n.js"></script>
 </body>
 </html>

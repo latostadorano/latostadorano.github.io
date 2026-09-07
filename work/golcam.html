@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Golcam, Pablo Islas</title>
-<meta name="description" content="Automated goal-capture, branding and WhatsApp delivery system for a five-a-side football venue in Guadalajara.">
+<meta name="description" content="Automated goal-capture, branding and WhatsApp delivery system for a five-a-side football venue in Guadalajara." data-content-en="Automated goal-capture, branding and WhatsApp delivery system for a five-a-side football venue in Guadalajara." data-content-es="Sistema automatizado de captura de goles, branding y envío por WhatsApp para una cancha de fútbol rápido en Guadalajara.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,60 +18,62 @@
 <body>
 
 <header class="masthead"><div class="wrap masthead-in">
-  <a href="../index.html" class="brand">Pablo Islas <span class="no">/ creative</span></a>
+  <a href="../index.html" class="brand">Pablo Islas <span class="no" data-en="/ creative" data-es="/ creativo">/ creative</span></a>
   <nav class="mnav">
-    <a href="../index.html#work">Work</a>
-    <a href="../index.html#about">About</a>
-    <a href="../index.html#experience">Experience</a>
+    <div class="lang-switch"><button class="lang-btn active" data-lang="en">EN</button><span class="sep">/</span><button class="lang-btn" data-lang="es">ES</button></div>
+    <a href="../index.html#work" data-en="Work" data-es="Trabajo">Work</a>
+    <a href="../index.html#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="../index.html#experience" data-en="Experience" data-es="Experiencia">Experience</a>
     <a href="../cvs/pabloIslas_CV_2026.pdf" target="_blank">↓ CV</a>
-    <a class="cta" href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
   </nav>
 </div></header>
 
 <main>
   <div class="wrap">
-    <div class="cs-top"><a class="cs-back mono" href="../index.html#work">← Back to work</a></div>
+    <div class="cs-top"><a class="cs-back mono" href="../index.html#work" data-en="← Back to work" data-es="← Volver al trabajo">← Back to work</a></div>
 
     <div class="cs-layout">
       <aside class="cs-side">
         <h1>Gol<span class="r">cam</span></h1>
-        <p class="dek">Automated goal capture, branding and WhatsApp delivery for a five-a-side football venue.</p>
-        <div class="meta-row"><span>Role</span><span>Product &amp; Creative Direction</span></div>
-        <div class="meta-row"><span>Status</span><span class="live">● Live, in production</span></div>
-        <div class="meta-row"><span>Client</span><span>Centro Gol, Guadalajara</span></div>
-        <div class="meta-row"><span>Stack</span><span>Python · Flask · Hikvision DVR · WhatsApp</span></div>
-        <div class="meta-row"><span>Started</span><span>2025</span></div>
+        <p class="dek" data-en="Automated goal capture, branding and WhatsApp delivery for a five-a-side football venue." data-es="Captura automatizada de goles, branding y envío por WhatsApp para una cancha de fútbol rápido.">Automated goal capture, branding and WhatsApp delivery for a five-a-side football venue.</p>
+        <div class="meta-row"><span data-en="Role" data-es="Rol">Role</span><span data-en="Product &amp; Creative Direction" data-es="Producto y Dirección Creativa">Product &amp; Creative Direction</span></div>
+        <div class="meta-row"><span data-en="Status" data-es="Estado">Status</span><span class="live" data-en="● Live, in production" data-es="● En vivo, en producción">● Live, in production</span></div>
+        <div class="meta-row"><span data-en="Client" data-es="Cliente">Client</span><span>Centro Gol, Guadalajara</span></div>
+        <div class="meta-row"><span data-en="Stack" data-es="Stack">Stack</span><span>Python · Flask · Hikvision DVR · WhatsApp</span></div>
+        <div class="meta-row"><span data-en="Started" data-es="Inicio">Started</span><span>2025</span></div>
       </aside>
 
       <div class="cs-main">
-        <p>Centro Gol runs a five-a-side pitch that films every match on a security DVR nobody ever reviews. Golcam turns that raw feed into the one thing players actually want: their goal, branded, delivered to the group chat before the celebration is even over.</p>
-        <p>I built the product end to end: the referee's on-court app that triggers a capture, the server that pulls the clip from the DVR, and the branding pass that stamps it with a custom watermark sequence before it ships to WhatsApp automatically. On the design side, I directed the visual language for the on-court scoreboard players read mid-match: brutalist, high-contrast, legible from across the pitch under afternoon sun, built around Golcam's own institutional palette of signal green, alert red and near-black.</p>
-        <p>The clip pipeline (GolCam) has been running in production at Centro Gol since 2025. A companion live ScoreBoard and referee app (full match state, fouls, cards, a real-time link between the ref's phone and the courtside monitor over WebSockets) is in active development as the next stage of the system.</p>
-        <p>It's the project I point to when someone asks what "creative technologist" actually means in practice: the same instinct for structure and legibility that goes into a brand system, applied to a pipeline that has to run itself, unattended, every single match.</p>
+        <p data-en="Centro Gol operates a five-a-side pitch that records every match on a security DVR. Golcam converts that raw footage into a branded, shareable clip: each goal is captured, watermarked and delivered directly to the group chat automatically, with no manual editing or export step." data-es="Centro Gol opera una cancha de fútbol rápido que graba cada partido en un DVR de seguridad. Golcam convierte ese material crudo en un clip de marca, listo para compartir: cada gol se captura, se marca con agua y se entrega directamente al chat grupal de forma automática, sin edición manual ni paso de exportación.">Centro Gol operates a five-a-side pitch that records every match on a security DVR. Golcam converts that raw footage into a branded, shareable clip: each goal is captured, watermarked and delivered directly to the group chat automatically, with no manual editing or export step.</p>
+        <p data-en="I built the product end to end: a referee-facing app that triggers capture in real time, a Python and Flask server that pulls the clip from the Hikvision DVR, and a branding pipeline that applies a custom watermark sequence before delivery through WhatsApp. I also directed the visual language for the on-court scoreboard, a high-contrast, brutalist system built around the venue's institutional palette of signal green, alert red and near-black, designed for legibility from across the pitch in direct sunlight." data-es="Construí el producto de principio a fin: una app para el árbitro que dispara la captura en tiempo real, un servidor en Python y Flask que extrae el clip del DVR Hikvision, y un pipeline de marca que aplica una secuencia de marca de agua personalizada antes de la entrega por WhatsApp. También dirigí el lenguaje visual del marcador en cancha, un sistema brutalista de alto contraste construido en torno a la paleta institucional del venue: verde señal, rojo de alerta y casi negro, diseñado para ser legible desde el otro lado de la cancha bajo sol directo.">I built the product end to end: a referee-facing app that triggers capture in real time, a Python and Flask server that pulls the clip from the Hikvision DVR, and a branding pipeline that applies a custom watermark sequence before delivery through WhatsApp. I also directed the visual language for the on-court scoreboard, a high-contrast, brutalist system built around the venue's institutional palette of signal green, alert red and near-black, designed for legibility from across the pitch in direct sunlight.</p>
+        <p data-en="The clip pipeline has run in production at Centro Gol since 2025. A companion live scoreboard and referee application, tracking full match state, fouls and cards over a real-time WebSocket connection between the referee's phone and the courtside monitor, is in active development as the next stage of the system." data-es="El pipeline de clips corre en producción en Centro Gol desde 2025. Una aplicación complementaria de marcador en vivo y árbitro, que rastrea el estado completo del partido, faltas y tarjetas a través de una conexión WebSocket en tiempo real entre el teléfono del árbitro y el monitor de la cancha, está en desarrollo activo como la siguiente etapa del sistema.">The clip pipeline has run in production at Centro Gol since 2025. A companion live scoreboard and referee application, tracking full match state, fouls and cards over a real-time WebSocket connection between the referee's phone and the courtside monitor, is in active development as the next stage of the system.</p>
+        <p data-en="The project combines product design, backend development and brand systems work in a single pipeline that runs unattended for every match, and reflects the end-to-end ownership, from concept through production infrastructure, that defines my creative technology practice." data-es="El proyecto combina diseño de producto, desarrollo backend y trabajo de sistemas de marca en un solo pipeline que corre sin supervisión en cada partido, y refleja la responsabilidad de principio a fin, desde el concepto hasta la infraestructura de producción, que define mi práctica de tecnología creativa.">The project combines product design, backend development and brand systems work in a single pipeline that runs unattended for every match, and reflects the end-to-end ownership, from concept through production infrastructure, that defines my creative technology practice.</p>
 
         <div class="cs-gal">
           <div class="row">
-            <div class="item"><img src="../imas/golcam/golcam_scoreboard_live.png" alt="Golcam live scoreboard on a courtside monitor"><div class="cap">Live scoreboard: courtside monitor, brutalist palette for daylight visibility</div></div>
-            <div class="item"><img src="../imas/golcam/golcam_scoreboard_start.png" alt="Referee app, match started state"><div class="cap">Referee app: match started</div></div>
+            <div class="item"><img src="../imas/golcam/golcam_scoreboard_live.png" alt="Golcam live scoreboard on a courtside monitor"><div class="cap" data-en="Live scoreboard: courtside monitor, brutalist palette for daylight visibility" data-es="Marcador en vivo: monitor de cancha, paleta brutalista para visibilidad de día">Live scoreboard: courtside monitor, brutalist palette for daylight visibility</div></div>
+            <div class="item"><img src="../imas/golcam/golcam_scoreboard_start.png" alt="Referee app, match started state"><div class="cap" data-en="Referee app: match started" data-es="App del árbitro: partido iniciado">Referee app: match started</div></div>
           </div>
           <div class="row">
-            <div class="item"><img src="../imas/golcam/golcam_goal_overlay.png" alt="Goal overlay animation on the scoreboard"><div class="cap">Goal overlay: home team scores</div></div>
-            <div class="item"><img src="../imas/golcam/golcam_summary.png" alt="End of match summary card"><div class="cap">End-of-match summary: goals, cards, flow</div></div>
+            <div class="item"><img src="../imas/golcam/golcam_goal_overlay.png" alt="Goal overlay animation on the scoreboard"><div class="cap" data-en="Goal overlay: home team scores" data-es="Overlay de gol: anota el equipo local">Goal overlay: home team scores</div></div>
+            <div class="item"><img src="../imas/golcam/golcam_summary.png" alt="End of match summary card"><div class="cap" data-en="End-of-match summary: goals, cards, flow" data-es="Resumen de fin de partido: goles, tarjetas, flujo">End-of-match summary: goals, cards, flow</div></div>
           </div>
-          <div class="item wide"><img src="../imas/golcam/golcam_cover.png" alt="Golcam branded clip cover frame"><div class="cap">Branded clip cover: the watermark sequence every goal ships with</div></div>
+          <div class="item wide"><img src="../imas/golcam/golcam_cover.png" alt="Golcam branded clip cover frame"><div class="cap" data-en="Branded clip cover: the watermark sequence every goal ships with" data-es="Portada del clip de marca: la secuencia de marca de agua con la que sale cada gol">Branded clip cover: the watermark sequence every goal ships with</div></div>
         </div>
       </div>
     </div>
 
     <div class="cs-next">
-      <div><span class="cs-next-label">Next project</span><a href="bike-punk-flyers.html">Bike Punk Flyers →</a></div>
-      <a href="../index.html#work">All work</a>
+      <div><span class="cs-next-label" data-en="Next project" data-es="Siguiente proyecto">Next project</span><a href="bike-punk-flyers.html">Bike Punk Flyers →</a></div>
+      <a href="../index.html#work" data-en="All work" data-es="Todo el trabajo">All work</a>
     </div>
   </div>
 </main>
 
-<footer class="wrap"><span>Pablo Islas © 2026</span><span>Creative &amp; Digital Designer · GDL, MX</span></footer>
+<footer class="wrap"><span>Pablo Islas © 2026</span><span data-en="Creative &amp; Digital Designer · GDL, MX" data-es="Diseñador Creativo y Digital · GDL, MX">Creative &amp; Digital Designer · GDL, MX</span></footer>
 
 <script src="../crops.js"></script>
+<script src="../i18n.js"></script>
 </body>
 </html>
