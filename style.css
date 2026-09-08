@@ -156,6 +156,11 @@ footer{border-top:1px solid var(--line);padding:26px 0;display:flex;justify-cont
 .cs-gal .item.contain img,.cs-gal .item.contain video{object-fit:contain;background:var(--ink);}
 .cs-gal .item.ig img,.cs-gal .item.ig video{aspect-ratio:4/5;object-fit:cover;}
 .cs-gal .item.story img,.cs-gal .item.story video{aspect-ratio:9/16;object-fit:cover;}
+.cs-gal .item.screen img,.cs-gal .item.screen video{aspect-ratio:3/2;object-fit:contain;background:var(--ink);}
+.cs-gal .item.phone img,.cs-gal .item.phone video{aspect-ratio:390/844;object-fit:contain;background:var(--ink);}
+.cs-gal-h{font-family:"Space Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin:30px 0 4px;}
+.cs-gal-h:first-child{margin-top:0;}
+.cs-gal-sub{font-size:13px;color:var(--slate);line-height:1.5;margin:0 0 14px;max-width:60ch;}
 .cs-gal .item.plain{border:none;border-radius:0;background:transparent;}
 .cs-gal .item.plain img,.cs-gal .item.plain video{width:100%;height:auto;aspect-ratio:auto;object-fit:initial;}
 /* p5.js embed: crops the editor's ~44px toolbar off the top of the iframe */

@@ -84,7 +84,7 @@ var GROUPS = [
     { key: 'imas/OvvO/ovvo_gifs/1.gif', wide: false },
     { key: 'imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png', wide: false },
     { key: 'behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg', wide: false },
-    { key: 'imas/golcam/golcam_scoreboard_live.png', wide: false },
+    { key: 'imas/golcam/golcam_golconfirmado_desktop.png', wide: false },
     { key: 'behance_download/Bike-Punks-flyers/1.png', wide: false }
   ]},
   { label: 'SJRT Broadcast Network', items: [
@@ -136,13 +136,6 @@ var GROUPS = [
     { key: 'imas/postales/postal_dormir.png', wide: false },
     { key: 'imas/postales/postal_ventanaUniverso.png', wide: false }
   ]},
-  { label: 'Golcam', items: [
-    { key: 'imas/golcam/golcam_scoreboard_live.png', wide: false },
-    { key: 'imas/golcam/golcam_scoreboard_start.png', wide: false },
-    { key: 'imas/golcam/golcam_goal_overlay.png', wide: false },
-    { key: 'imas/golcam/golcam_summary.png', wide: false },
-    { key: 'imas/golcam/golcam_cover.png', wide: true }
-  ]},
   { label: 'Bike Punk Flyers', items: [
     { key: 'behance_download/Bike-Punks-flyers/1.png', wide: false },
     { key: 'behance_download/Bike-Punks-flyers/2.png', wide: false },
@@ -153,7 +146,7 @@ var GROUPS = [
 ];
 
 // Valores guardados actualmente en imas/crops.json (punto de partida).
-var crops = {"imas/golcam/golcam_scoreboard_live.png":51,"imas/cursos_verano/portada.png":52,"behance_download/Music-video-for-Katfish/1.png":13,"imas/cabrona/cabrona_aretes.png":47,"imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png":5,"behance_download/Bike-Punks-flyers/1.png":16,"imas/golcam/golcam_scoreboard_start.png":50,"imas/golcam/golcam_goal_overlay.png":72,"imas/golcam/golcam_summary.png":55,"imas/golcam/golcam_cover.png":43,"behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg":100,"behance_download/Generative-Forecasts/2f23bb235249179.68d38124d37b3.jpg":100,"behance_download/Generative-Forecasts/59b0ca235249179.68d38124d3ece.png":100,"behance_download/Generative-Forecasts/d3a781235249179.68d381240c04c.png":100,"behance_download/Generative-Forecasts/de2c2d235249179.68d381240c8a4.png":88,"imas/postales/postal_dormir.png":18,"imas/postales/postal_ventanaUniverso.png":23,"imas/postales/postal_leonora.png":12,"imas/postales/postal_taco.png":6,"imas/postales/postal_artesano.png":100,"imas/postales/postal_bailarines_2.png":13,"imas/postales/postal_bosques.png":100,"imas/postales/postal_zuno.png":15,"imas/cursos_verano/cursosVerano_vertical_1.png":96,"imas/cursos_verano/cursosVerano_vertical_2.png":94,"imas/cabrona/cabrona_aretes_2.png":91,"behance_download/Music-video-for-Katfish/2.png":33,"behance_download/Music-video-for-Katfish/3.png":35,"behance_download/Music-video-for-Katfish/4.png":30,"imas/ai/0_asdf1.jpg":39,"imas/ai/ai_ovvos/1%202.png":17,"behance_download/Bike-Punks-flyers/2.png":16,"behance_download/Bike-Punks-flyers/3.png":16,"behance_download/Bike-Punks-flyers/4.png":17,"behance_download/Bike-Punks-flyers/5.png":12};
+var crops = {"imas/cursos_verano/portada.png":52,"behance_download/Music-video-for-Katfish/1.png":13,"imas/cabrona/cabrona_aretes.png":47,"imas/ai/03e88a80-5f01-45f0-8561-28563e2cbfe1.png":5,"behance_download/Bike-Punks-flyers/1.png":16,"behance_download/Generative-Forecasts/145e7d235249179.68d38124d322c.jpg":100,"behance_download/Generative-Forecasts/2f23bb235249179.68d38124d37b3.jpg":100,"behance_download/Generative-Forecasts/59b0ca235249179.68d38124d3ece.png":100,"behance_download/Generative-Forecasts/d3a781235249179.68d381240c04c.png":100,"behance_download/Generative-Forecasts/de2c2d235249179.68d381240c8a4.png":88,"imas/postales/postal_dormir.png":18,"imas/postales/postal_ventanaUniverso.png":23,"imas/postales/postal_leonora.png":12,"imas/postales/postal_taco.png":6,"imas/postales/postal_artesano.png":100,"imas/postales/postal_bailarines_2.png":13,"imas/postales/postal_bosques.png":100,"imas/postales/postal_zuno.png":15,"imas/cursos_verano/cursosVerano_vertical_1.png":96,"imas/cursos_verano/cursosVerano_vertical_2.png":94,"imas/cabrona/cabrona_aretes_2.png":91,"behance_download/Music-video-for-Katfish/2.png":33,"behance_download/Music-video-for-Katfish/3.png":35,"behance_download/Music-video-for-Katfish/4.png":30,"imas/ai/0_asdf1.jpg":39,"imas/ai/ai_ovvos/1%202.png":17,"behance_download/Bike-Punks-flyers/2.png":16,"behance_download/Bike-Punks-flyers/3.png":16,"behance_download/Bike-Punks-flyers/4.png":17,"behance_download/Bike-Punks-flyers/5.png":12};
 
 var initial = {};       // key -> value when the page loaded (to detect changes)
 var dirty = {};         // key -> true if changed since load
